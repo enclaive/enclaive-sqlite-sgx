@@ -90,7 +90,11 @@
 \definecolor{light}{RGB}{138, 216, 203}
 \begin{document}
 \begin{acronym}
-
+\acro{CSP}{Cloud Service Provider}
+\acro{DRAM}{Dynamic Random Access Memory}
+\acro{PRM}{Processor Reserved Memory}
+\acro{EPC}{Enclave Page Cache}
+\acro{SQL}{Structured Query Language}
 \end{acronym}
 
 \maketitle % Print the title
@@ -108,11 +112,16 @@
 \input{sections/project}
 \input{sections/company}
 \input{sections/requirements}
-
+\input{sections/architecture}
 %------------------------------------------------
 \begin{thebibliography}{9}
 %\bibitem{blsPaper}
 %Boneh, D., Drijvers, M., \& Neven, G. BLS Multi-Signatures With Public-Key Aggregation.	
+\bibitem{sgx-bibel}
+Costan, Victor, and Srinivas Devadas. 2016. Intel SGX Explained. http://eprint.iacr.org/2016/086 (November 8, 2019).
+
+\bibitem{sgx-performance}
+Weichbrodt, Nico, Pierre-Louis Aublin, and Rüdiger Kapitza. 2018. “Sgx-Perf: A Performance Analysis Tool for Intel SGX Enclaves.” In Proceedings of the 19th International Middleware Conference on - Middleware ’18, Rennes, France: ACM Press, 201–13. http://dl.acm.org/citation.cfm?doid=3274808.3274824 (January 21, 2020).
 
 
 \end{thebibliography}
