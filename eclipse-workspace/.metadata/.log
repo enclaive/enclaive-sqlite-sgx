@@ -1,0 +1,667 @@
+!SESSION 2020-02-23 11:57:36.703 -----------------------------------------------
+eclipse.buildId=4.14.0.I20191210-0610
+java.version=11.0.6
+java.vendor=Ubuntu
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=de_DE
+Framework arguments:  -product org.eclipse.epp.package.cpp.product
+Command-line arguments:  -data /home/sgx/workspace-sgx_demo -os linux -ws gtk -arch x86_64 -product org.eclipse.epp.package.cpp.product
+
+!ENTRY org.eclipse.cdt.core 1 0 2020-02-23 11:59:45.971
+!MESSAGE Indexed 'sgx_sqlite' (0 sources, 0 headers) in 0,002 sec: 0 declarations; 0 references; 0 unresolved inclusions; 0 syntax errors; 0 unresolved names (0 %)
+
+!ENTRY org.eclipse.cdt.core 1 0 2020-02-23 12:00:35.687
+!MESSAGE Indexed 'sgx_sqlite' (2 sources, 4 headers) in 0,057 sec: 31 declarations; 51 references; 28 unresolved inclusions; 3 syntax errors; 60 unresolved names (42 %)
+
+!ENTRY org.eclipse.cdt.core 1 0 2020-02-23 12:04:39.065
+!MESSAGE Indexed 'Test' (0 sources, 0 headers) in 0 sec: 0 declarations; 0 references; 0 unresolved inclusions; 0 syntax errors; 0 unresolved names (0 %)
+
+!ENTRY org.eclipse.cdt.core 1 0 2020-02-23 12:08:50.108
+!MESSAGE Indexed 'Test' (4 sources, 176 headers) in 0,472 sec: 4.458 declarations; 6.813 references; 1 unresolved inclusions; 0 syntax errors; 1 unresolved names (0,0089 %)
+
+!ENTRY org.eclipse.cdt.launch 4 150 2020-02-23 12:11:44.668
+!MESSAGE Error starting process.
+!STACK 0
+java.io.IOException: Exec_tty error:Cannot run program "/home/sgx/workspace-sgx_demo/Test/sgx/enclave_test/Makefile": Unknown reason
+	at org.eclipse.cdt.utils.spawner.Spawner.exec_pty(Spawner.java:390)
+	at org.eclipse.cdt.utils.spawner.Spawner.<init>(Spawner.java:102)
+	at org.eclipse.cdt.utils.spawner.ProcessFactory.exec(ProcessFactory.java:97)
+	at org.eclipse.cdt.launch.internal.LocalRunLaunchDelegate.exec(LocalRunLaunchDelegate.java:284)
+	at org.eclipse.cdt.launch.internal.LocalRunLaunchDelegate.runLocalApplication(LocalRunLaunchDelegate.java:111)
+	at org.eclipse.cdt.launch.internal.LocalRunLaunchDelegate.launch(LocalRunLaunchDelegate.java:79)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:860)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:719)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1017)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$2.run(DebugUIPlugin.java:1220)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+!SUBENTRY 1 org.eclipse.cdt.launch 4 150 2020-02-23 12:11:44.669
+!MESSAGE Exec_tty error:Cannot run program "/home/sgx/workspace-sgx_demo/Test/sgx/enclave_test/Makefile": Unknown reason
+!STACK 0
+java.io.IOException: Exec_tty error:Cannot run program "/home/sgx/workspace-sgx_demo/Test/sgx/enclave_test/Makefile": Unknown reason
+	at org.eclipse.cdt.utils.spawner.Spawner.exec_pty(Spawner.java:390)
+	at org.eclipse.cdt.utils.spawner.Spawner.<init>(Spawner.java:102)
+	at org.eclipse.cdt.utils.spawner.ProcessFactory.exec(ProcessFactory.java:97)
+	at org.eclipse.cdt.launch.internal.LocalRunLaunchDelegate.exec(LocalRunLaunchDelegate.java:284)
+	at org.eclipse.cdt.launch.internal.LocalRunLaunchDelegate.runLocalApplication(LocalRunLaunchDelegate.java:111)
+	at org.eclipse.cdt.launch.internal.LocalRunLaunchDelegate.launch(LocalRunLaunchDelegate.java:79)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:860)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:719)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1017)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$2.run(DebugUIPlugin.java:1220)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.cdt.launch 4 150 2020-02-23 12:12:12.915
+!MESSAGE Error starting process.
+!STACK 0
+java.io.IOException: Exec_tty error:Cannot run program "/home/sgx/workspace-sgx_demo/Test/sgx/enclave_test/untrusted/sample.cpp": Unknown reason
+	at org.eclipse.cdt.utils.spawner.Spawner.exec_pty(Spawner.java:390)
+	at org.eclipse.cdt.utils.spawner.Spawner.<init>(Spawner.java:102)
+	at org.eclipse.cdt.utils.spawner.ProcessFactory.exec(ProcessFactory.java:97)
+	at org.eclipse.cdt.launch.internal.LocalRunLaunchDelegate.exec(LocalRunLaunchDelegate.java:284)
+	at org.eclipse.cdt.launch.internal.LocalRunLaunchDelegate.runLocalApplication(LocalRunLaunchDelegate.java:111)
+	at org.eclipse.cdt.launch.internal.LocalRunLaunchDelegate.launch(LocalRunLaunchDelegate.java:79)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:860)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:719)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1017)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$2.run(DebugUIPlugin.java:1220)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+!SUBENTRY 1 org.eclipse.cdt.launch 4 150 2020-02-23 12:12:12.916
+!MESSAGE Exec_tty error:Cannot run program "/home/sgx/workspace-sgx_demo/Test/sgx/enclave_test/untrusted/sample.cpp": Unknown reason
+!STACK 0
+java.io.IOException: Exec_tty error:Cannot run program "/home/sgx/workspace-sgx_demo/Test/sgx/enclave_test/untrusted/sample.cpp": Unknown reason
+	at org.eclipse.cdt.utils.spawner.Spawner.exec_pty(Spawner.java:390)
+	at org.eclipse.cdt.utils.spawner.Spawner.<init>(Spawner.java:102)
+	at org.eclipse.cdt.utils.spawner.ProcessFactory.exec(ProcessFactory.java:97)
+	at org.eclipse.cdt.launch.internal.LocalRunLaunchDelegate.exec(LocalRunLaunchDelegate.java:284)
+	at org.eclipse.cdt.launch.internal.LocalRunLaunchDelegate.runLocalApplication(LocalRunLaunchDelegate.java:111)
+	at org.eclipse.cdt.launch.internal.LocalRunLaunchDelegate.launch(LocalRunLaunchDelegate.java:79)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:860)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:719)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1017)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$2.run(DebugUIPlugin.java:1220)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.cdt.launch 4 150 2020-02-23 12:14:21.069
+!MESSAGE Error starting process.
+!STACK 0
+java.io.IOException: Exec_tty error:Cannot run program "/home/sgx/workspace-sgx_demo/Test/sgx/Makefile": Unknown reason
+	at org.eclipse.cdt.utils.spawner.Spawner.exec_pty(Spawner.java:390)
+	at org.eclipse.cdt.utils.spawner.Spawner.<init>(Spawner.java:102)
+	at org.eclipse.cdt.utils.spawner.ProcessFactory.exec(ProcessFactory.java:97)
+	at org.eclipse.cdt.launch.internal.LocalRunLaunchDelegate.exec(LocalRunLaunchDelegate.java:284)
+	at org.eclipse.cdt.launch.internal.LocalRunLaunchDelegate.runLocalApplication(LocalRunLaunchDelegate.java:111)
+	at org.eclipse.cdt.launch.internal.LocalRunLaunchDelegate.launch(LocalRunLaunchDelegate.java:79)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:860)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:719)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1017)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$2.run(DebugUIPlugin.java:1220)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+!SUBENTRY 1 org.eclipse.cdt.launch 4 150 2020-02-23 12:14:21.069
+!MESSAGE Exec_tty error:Cannot run program "/home/sgx/workspace-sgx_demo/Test/sgx/Makefile": Unknown reason
+!STACK 0
+java.io.IOException: Exec_tty error:Cannot run program "/home/sgx/workspace-sgx_demo/Test/sgx/Makefile": Unknown reason
+	at org.eclipse.cdt.utils.spawner.Spawner.exec_pty(Spawner.java:390)
+	at org.eclipse.cdt.utils.spawner.Spawner.<init>(Spawner.java:102)
+	at org.eclipse.cdt.utils.spawner.ProcessFactory.exec(ProcessFactory.java:97)
+	at org.eclipse.cdt.launch.internal.LocalRunLaunchDelegate.exec(LocalRunLaunchDelegate.java:284)
+	at org.eclipse.cdt.launch.internal.LocalRunLaunchDelegate.runLocalApplication(LocalRunLaunchDelegate.java:111)
+	at org.eclipse.cdt.launch.internal.LocalRunLaunchDelegate.launch(LocalRunLaunchDelegate.java:79)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:860)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:719)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1017)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$2.run(DebugUIPlugin.java:1220)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.cdt.launch 4 150 2020-02-23 12:14:45.207
+!MESSAGE Error starting process.
+!STACK 0
+java.io.IOException: Exec_tty error:Cannot run program "/home/sgx/workspace-sgx_demo/Test/sgx/enclave_test/Makefile": Unknown reason
+	at org.eclipse.cdt.utils.spawner.Spawner.exec_pty(Spawner.java:390)
+	at org.eclipse.cdt.utils.spawner.Spawner.<init>(Spawner.java:102)
+	at org.eclipse.cdt.utils.spawner.ProcessFactory.exec(ProcessFactory.java:97)
+	at org.eclipse.cdt.launch.internal.LocalRunLaunchDelegate.exec(LocalRunLaunchDelegate.java:284)
+	at org.eclipse.cdt.launch.internal.LocalRunLaunchDelegate.runLocalApplication(LocalRunLaunchDelegate.java:111)
+	at org.eclipse.cdt.launch.internal.LocalRunLaunchDelegate.launch(LocalRunLaunchDelegate.java:79)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:860)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:719)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1017)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$2.run(DebugUIPlugin.java:1220)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+!SUBENTRY 1 org.eclipse.cdt.launch 4 150 2020-02-23 12:14:45.208
+!MESSAGE Exec_tty error:Cannot run program "/home/sgx/workspace-sgx_demo/Test/sgx/enclave_test/Makefile": Unknown reason
+!STACK 0
+java.io.IOException: Exec_tty error:Cannot run program "/home/sgx/workspace-sgx_demo/Test/sgx/enclave_test/Makefile": Unknown reason
+	at org.eclipse.cdt.utils.spawner.Spawner.exec_pty(Spawner.java:390)
+	at org.eclipse.cdt.utils.spawner.Spawner.<init>(Spawner.java:102)
+	at org.eclipse.cdt.utils.spawner.ProcessFactory.exec(ProcessFactory.java:97)
+	at org.eclipse.cdt.launch.internal.LocalRunLaunchDelegate.exec(LocalRunLaunchDelegate.java:284)
+	at org.eclipse.cdt.launch.internal.LocalRunLaunchDelegate.runLocalApplication(LocalRunLaunchDelegate.java:111)
+	at org.eclipse.cdt.launch.internal.LocalRunLaunchDelegate.launch(LocalRunLaunchDelegate.java:79)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:860)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:719)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1017)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$2.run(DebugUIPlugin.java:1220)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.cdt.launch 4 150 2020-02-23 12:15:41.105
+!MESSAGE Error starting process.
+!STACK 0
+java.io.IOException: Exec_tty error:Cannot run program "/home/sgx/workspace-sgx_demo/Test/sgx/enclave_test/test.signed.so": Unknown reason
+	at org.eclipse.cdt.utils.spawner.Spawner.exec_pty(Spawner.java:390)
+	at org.eclipse.cdt.utils.spawner.Spawner.<init>(Spawner.java:102)
+	at org.eclipse.cdt.utils.spawner.ProcessFactory.exec(ProcessFactory.java:97)
+	at org.eclipse.cdt.launch.internal.LocalRunLaunchDelegate.exec(LocalRunLaunchDelegate.java:284)
+	at org.eclipse.cdt.launch.internal.LocalRunLaunchDelegate.runLocalApplication(LocalRunLaunchDelegate.java:111)
+	at org.eclipse.cdt.launch.internal.LocalRunLaunchDelegate.launch(LocalRunLaunchDelegate.java:79)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:860)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:719)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1017)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$2.run(DebugUIPlugin.java:1220)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+!SUBENTRY 1 org.eclipse.cdt.launch 4 150 2020-02-23 12:15:41.106
+!MESSAGE Exec_tty error:Cannot run program "/home/sgx/workspace-sgx_demo/Test/sgx/enclave_test/test.signed.so": Unknown reason
+!STACK 0
+java.io.IOException: Exec_tty error:Cannot run program "/home/sgx/workspace-sgx_demo/Test/sgx/enclave_test/test.signed.so": Unknown reason
+	at org.eclipse.cdt.utils.spawner.Spawner.exec_pty(Spawner.java:390)
+	at org.eclipse.cdt.utils.spawner.Spawner.<init>(Spawner.java:102)
+	at org.eclipse.cdt.utils.spawner.ProcessFactory.exec(ProcessFactory.java:97)
+	at org.eclipse.cdt.launch.internal.LocalRunLaunchDelegate.exec(LocalRunLaunchDelegate.java:284)
+	at org.eclipse.cdt.launch.internal.LocalRunLaunchDelegate.runLocalApplication(LocalRunLaunchDelegate.java:111)
+	at org.eclipse.cdt.launch.internal.LocalRunLaunchDelegate.launch(LocalRunLaunchDelegate.java:79)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:860)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:719)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1017)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$2.run(DebugUIPlugin.java:1220)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+!SESSION 2020-02-23 12:26:49.459 -----------------------------------------------
+eclipse.buildId=4.14.0.I20191210-0610
+java.version=11.0.6
+java.vendor=Ubuntu
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=de_DE
+Framework arguments:  -product org.eclipse.epp.package.cpp.product
+Command-line arguments:  -os linux -ws gtk -arch x86_64 -product org.eclipse.epp.package.cpp.product
+
+!ENTRY org.eclipse.cdt.core 1 0 2020-02-23 12:27:03.868
+!MESSAGE Indexed 'Test' (4 sources, 176 headers) in 2,13 sec: 4.458 declarations; 6.813 references; 1 unresolved inclusions; 0 syntax errors; 1 unresolved names (0,0089 %)
+
+!ENTRY org.eclipse.cdt.core 1 0 2020-02-23 12:31:55.941
+!MESSAGE Indexed 'SGX_SQLite' (4 sources, 176 headers) in 0,696 sec: 4.458 declarations; 6.813 references; 1 unresolved inclusions; 0 syntax errors; 1 unresolved names (0,0089 %)
+
+!ENTRY org.eclipse.cdt.core 1 0 2020-02-23 12:36:00.488
+!MESSAGE Indexed 'SGX_SQLite' (4 sources, 176 headers) in 0,502 sec: 4.459 declarations; 6.838 references; 1 unresolved inclusions; 0 syntax errors; 1 unresolved names (0,0089 %)
+
+!ENTRY org.eclipse.ui 4 0 2020-02-23 12:53:41.104
+!MESSAGE Cannot create or restore 'Makefile' because it already exists.
+!STACK 0
+org.eclipse.core.commands.ExecutionException: Cannot create or restore 'Makefile' because it already exists.
+	at org.eclipse.ltk.internal.core.refactoring.UndoableOperation2ChangeAdapter.undo(UndoableOperation2ChangeAdapter.java:213)
+	at org.eclipse.core.commands.operations.TriggeredOperations.undo(TriggeredOperations.java:215)
+	at org.eclipse.core.commands.operations.DefaultOperationHistory.doUndo(DefaultOperationHistory.java:407)
+	at org.eclipse.core.commands.operations.DefaultOperationHistory.undo(DefaultOperationHistory.java:1151)
+	at org.eclipse.ui.operations.UndoActionHandler.runCommand(UndoActionHandler.java:86)
+	at org.eclipse.ui.operations.OperationHistoryActionHandler.lambda$0(OperationHistoryActionHandler.java:288)
+	at org.eclipse.jface.operation.ModalContext.runInCurrentThread(ModalContext.java:436)
+	at org.eclipse.jface.operation.ModalContext.run(ModalContext.java:352)
+	at org.eclipse.jface.dialogs.ProgressMonitorDialog.run(ProgressMonitorDialog.java:469)
+	at org.eclipse.ui.internal.operations.TimeTriggeredProgressMonitorDialog.access$6(TimeTriggeredProgressMonitorDialog.java:1)
+	at org.eclipse.ui.internal.operations.TimeTriggeredProgressMonitorDialog.lambda$0(TimeTriggeredProgressMonitorDialog.java:155)
+	at org.eclipse.swt.custom.BusyIndicator.showWhile(BusyIndicator.java:72)
+	at org.eclipse.ui.internal.operations.TimeTriggeredProgressMonitorDialog.run(TimeTriggeredProgressMonitorDialog.java:167)
+	at org.eclipse.ui.operations.OperationHistoryActionHandler.run(OperationHistoryActionHandler.java:301)
+	at org.eclipse.jface.action.Action.runWithEvent(Action.java:474)
+	at org.eclipse.jface.commands.ActionHandler.execute(ActionHandler.java:121)
+	at org.eclipse.ui.internal.handlers.E4HandlerProxy.execute(E4HandlerProxy.java:97)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.eclipse.e4.core.internal.di.MethodRequestor.execute(MethodRequestor.java:58)
+	at org.eclipse.e4.core.internal.di.InjectorImpl.invokeUsingClass(InjectorImpl.java:318)
+	at org.eclipse.e4.core.internal.di.InjectorImpl.invoke(InjectorImpl.java:252)
+	at org.eclipse.e4.core.contexts.ContextInjectionFactory.invoke(ContextInjectionFactory.java:173)
+	at org.eclipse.e4.core.commands.internal.HandlerServiceHandler.execute(HandlerServiceHandler.java:156)
+	at org.eclipse.core.commands.Command.executeWithChecks(Command.java:488)
+	at org.eclipse.core.commands.ParameterizedCommand.executeWithChecks(ParameterizedCommand.java:487)
+	at org.eclipse.e4.core.commands.internal.HandlerServiceImpl.executeHandler(HandlerServiceImpl.java:213)
+	at org.eclipse.e4.ui.bindings.keys.KeyBindingDispatcher.executeCommand(KeyBindingDispatcher.java:308)
+	at org.eclipse.e4.ui.bindings.keys.KeyBindingDispatcher.press(KeyBindingDispatcher.java:584)
+	at org.eclipse.e4.ui.bindings.keys.KeyBindingDispatcher.processKeyEvent(KeyBindingDispatcher.java:653)
+	at org.eclipse.e4.ui.bindings.keys.KeyBindingDispatcher.filterKeySequenceBindings(KeyBindingDispatcher.java:443)
+	at org.eclipse.e4.ui.bindings.keys.KeyBindingDispatcher.access$2(KeyBindingDispatcher.java:386)
+	at org.eclipse.e4.ui.bindings.keys.KeyBindingDispatcher$KeyDownFilter.handleEvent(KeyBindingDispatcher.java:96)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:89)
+	at org.eclipse.swt.widgets.Display.filterEvent(Display.java:1842)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1422)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1449)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1432)
+	at org.eclipse.swt.widgets.Widget.sendKeyEvent(Widget.java:1473)
+	at org.eclipse.swt.widgets.Widget.gtk_key_press_event(Widget.java:837)
+	at org.eclipse.swt.widgets.Control.gtk_key_press_event(Control.java:3997)
+	at org.eclipse.swt.widgets.Composite.gtk_key_press_event(Composite.java:857)
+	at org.eclipse.swt.widgets.Tree.gtk_key_press_event(Tree.java:2256)
+	at org.eclipse.swt.widgets.Widget.windowProc(Widget.java:2269)
+	at org.eclipse.swt.widgets.Control.windowProc(Control.java:6826)
+	at org.eclipse.swt.widgets.Tree.windowProc(Tree.java:4200)
+	at org.eclipse.swt.widgets.Display.windowProc(Display.java:5917)
+	at org.eclipse.swt.internal.gtk.GTK._gtk_main_do_event(Native Method)
+	at org.eclipse.swt.internal.gtk.GTK.gtk_main_do_event(GTK.java:4168)
+	at org.eclipse.swt.widgets.Display.eventProc(Display.java:1480)
+	at org.eclipse.swt.internal.gtk.OS._g_main_context_iteration(Native Method)
+	at org.eclipse.swt.internal.gtk.OS.g_main_context_iteration(OS.java:1604)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:4427)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1160)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:338)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1049)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:155)
+	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:660)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:338)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:559)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:154)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:150)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:203)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:137)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:107)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:401)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:255)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:657)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:594)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1465)
+	at org.eclipse.equinox.launcher.Main.main(Main.java:1438)
+Caused by: org.eclipse.core.runtime.CoreException: Cannot create or restore 'Makefile' because it already exists.
+	at org.eclipse.ltk.internal.core.refactoring.resource.UndoDeleteResourceChange.perform(UndoDeleteResourceChange.java:75)
+	at org.eclipse.ltk.core.refactoring.CompositeChange.perform(CompositeChange.java:281)
+	at org.eclipse.ltk.core.refactoring.CompositeChange.perform(CompositeChange.java:281)
+	at org.eclipse.ltk.internal.core.refactoring.UndoableOperation2ChangeAdapter$1.run(UndoableOperation2ChangeAdapter.java:332)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2292)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2312)
+	at org.eclipse.ltk.internal.core.refactoring.UndoableOperation2ChangeAdapter.executeChange(UndoableOperation2ChangeAdapter.java:355)
+	at org.eclipse.ltk.internal.core.refactoring.UndoableOperation2ChangeAdapter.undo(UndoableOperation2ChangeAdapter.java:197)
+	... 76 more
+
+!ENTRY org.eclipse.cdt.core 1 0 2020-02-23 12:55:37.924
+!MESSAGE Indexed 'SGX_SQLite' (7 sources, 313 headers) in 6,62 sec: 41.699 declarations; 157.924 references; 1 unresolved inclusions; 0 syntax errors; 199 unresolved names (0,1 %)
+
+!ENTRY org.eclipse.cdt.core 1 0 2020-02-23 13:00:13.964
+!MESSAGE Indexed 'SGX_SQLite' (7 sources, 313 headers) in 5,87 sec: 41.699 declarations; 157.924 references; 1 unresolved inclusions; 0 syntax errors; 199 unresolved names (0,1 %)
+
+!ENTRY org.eclipse.cdt.launch 4 104 2020-02-23 13:02:44.166
+!MESSAGE Program file does not exist
+!STACK 0
+java.io.FileNotFoundException: /home/sgx/eclipse-workspace/SGX_SQLite/sgx/enclave/app not found
+	at org.eclipse.cdt.launch.AbstractCLaunchDelegate2.verifyProgramPath(AbstractCLaunchDelegate2.java:703)
+	at org.eclipse.cdt.launch.internal.LocalRunLaunchDelegate.checkBinaryDetails(LocalRunLaunchDelegate.java:263)
+	at org.eclipse.cdt.launch.internal.LocalRunLaunchDelegate.runLocalApplication(LocalRunLaunchDelegate.java:91)
+	at org.eclipse.cdt.launch.internal.LocalRunLaunchDelegate.launch(LocalRunLaunchDelegate.java:79)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:860)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:719)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1017)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$2.run(DebugUIPlugin.java:1220)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+!SUBENTRY 1 org.eclipse.cdt.launch 4 104 2020-02-23 13:02:44.166
+!MESSAGE /home/sgx/eclipse-workspace/SGX_SQLite/sgx/enclave/app not found
+!STACK 0
+java.io.FileNotFoundException: /home/sgx/eclipse-workspace/SGX_SQLite/sgx/enclave/app not found
+	at org.eclipse.cdt.launch.AbstractCLaunchDelegate2.verifyProgramPath(AbstractCLaunchDelegate2.java:703)
+	at org.eclipse.cdt.launch.internal.LocalRunLaunchDelegate.checkBinaryDetails(LocalRunLaunchDelegate.java:263)
+	at org.eclipse.cdt.launch.internal.LocalRunLaunchDelegate.runLocalApplication(LocalRunLaunchDelegate.java:91)
+	at org.eclipse.cdt.launch.internal.LocalRunLaunchDelegate.launch(LocalRunLaunchDelegate.java:79)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:860)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:719)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1017)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$2.run(DebugUIPlugin.java:1220)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.cdt.launch 4 150 2020-02-23 13:17:18.817
+!MESSAGE Error starting process.
+!STACK 0
+java.io.IOException: Exec_tty error:Cannot run program "/home/sgx/eclipse-workspace/SGX_SQLite/sgx/enclave_sqlite/app": Unknown reason
+	at org.eclipse.cdt.utils.spawner.Spawner.exec_pty(Spawner.java:390)
+	at org.eclipse.cdt.utils.spawner.Spawner.<init>(Spawner.java:102)
+	at org.eclipse.cdt.utils.spawner.ProcessFactory.exec(ProcessFactory.java:97)
+	at org.eclipse.cdt.launch.internal.LocalRunLaunchDelegate.exec(LocalRunLaunchDelegate.java:284)
+	at org.eclipse.cdt.launch.internal.LocalRunLaunchDelegate.runLocalApplication(LocalRunLaunchDelegate.java:111)
+	at org.eclipse.cdt.launch.internal.LocalRunLaunchDelegate.launch(LocalRunLaunchDelegate.java:79)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:860)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:719)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1017)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$2.run(DebugUIPlugin.java:1220)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+!SUBENTRY 1 org.eclipse.cdt.launch 4 150 2020-02-23 13:17:18.818
+!MESSAGE Exec_tty error:Cannot run program "/home/sgx/eclipse-workspace/SGX_SQLite/sgx/enclave_sqlite/app": Unknown reason
+!STACK 0
+java.io.IOException: Exec_tty error:Cannot run program "/home/sgx/eclipse-workspace/SGX_SQLite/sgx/enclave_sqlite/app": Unknown reason
+	at org.eclipse.cdt.utils.spawner.Spawner.exec_pty(Spawner.java:390)
+	at org.eclipse.cdt.utils.spawner.Spawner.<init>(Spawner.java:102)
+	at org.eclipse.cdt.utils.spawner.ProcessFactory.exec(ProcessFactory.java:97)
+	at org.eclipse.cdt.launch.internal.LocalRunLaunchDelegate.exec(LocalRunLaunchDelegate.java:284)
+	at org.eclipse.cdt.launch.internal.LocalRunLaunchDelegate.runLocalApplication(LocalRunLaunchDelegate.java:111)
+	at org.eclipse.cdt.launch.internal.LocalRunLaunchDelegate.launch(LocalRunLaunchDelegate.java:79)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:860)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:719)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1017)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$2.run(DebugUIPlugin.java:1220)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.cdt.dsf.gdb 4 5012 2020-02-23 13:17:37.211
+!MESSAGE Error in final launch sequence:
+
+Failed to execute MI command:
+-exec-run
+Error message from debugger back end:
+During startup program exited with code 126.
+!STACK 1
+org.eclipse.core.runtime.CoreException: Failed to execute MI command:
+-exec-run
+Error message from debugger back end:
+During startup program exited with code 126.
+	at org.eclipse.cdt.dsf.concurrent.Query.get(Query.java:112)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.launchDebugSession(GdbLaunchDelegate.java:242)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.launchDebugger(GdbLaunchDelegate.java:106)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.launch(GdbLaunchDelegate.java:94)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:860)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:719)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1017)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$2.run(DebugUIPlugin.java:1220)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Caused by: java.lang.Exception: During startup program exited with code 126.
+	at org.eclipse.cdt.dsf.mi.service.command.AbstractMIControl$RxThread.processMIOutput(AbstractMIControl.java:993)
+	at org.eclipse.cdt.dsf.mi.service.command.AbstractMIControl$RxThread.run(AbstractMIControl.java:822)
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10004 2020-02-23 13:17:37.212
+!MESSAGE Failed to execute MI command:
+-exec-run
+Error message from debugger back end:
+During startup program exited with code 126.
+!STACK 0
+java.lang.Exception: During startup program exited with code 126.
+	at org.eclipse.cdt.dsf.mi.service.command.AbstractMIControl$RxThread.processMIOutput(AbstractMIControl.java:993)
+	at org.eclipse.cdt.dsf.mi.service.command.AbstractMIControl$RxThread.run(AbstractMIControl.java:822)
+
+!ENTRY org.eclipse.cdt.dsf.ui 2 0 2020-02-23 13:35:29.860
+!MESSAGE Unable to locate file: /build/glibc-OTsEL5/glibc-2.27/csu/../csu/libc-start.c
+
+!ENTRY org.eclipse.cdt.dsf.ui 2 0 2020-02-23 13:35:29.937
+!MESSAGE Unable to locate file: /build/glibc-OTsEL5/glibc-2.27/csu/../sysdeps/unix/sysv/linux/exit-thread.h
+
+!ENTRY org.eclipse.cdt.dsf.ui 2 0 2020-02-23 13:35:44.658
+!MESSAGE Unable to locate file: /build/glibc-OTsEL5/glibc-2.27/stdlib/exit.c
+
+!ENTRY org.eclipse.cdt.core 1 0 2020-02-23 13:43:21.756
+!MESSAGE Indexed 'SGX_SQLite' (7 sources, 309 headers) in 5,26 sec: 41.379 declarations; 157.352 references; 1 unresolved inclusions; 0 syntax errors; 5 unresolved names (0,0025 %)
+
+!ENTRY org.eclipse.cdt.core 1 0 2020-02-23 13:45:29.348
+!MESSAGE Indexed 'SGX_SQLite' (7 sources, 313 headers) in 5,15 sec: 41.699 declarations; 157.924 references; 1 unresolved inclusions; 0 syntax errors; 199 unresolved names (0,1 %)
+
+!ENTRY org.eclipse.cdt.core 1 0 2020-02-23 13:47:59.436
+!MESSAGE Indexed 'SGX_SQLite' (7 sources, 313 headers) in 4,83 sec: 41.699 declarations; 157.924 references; 1 unresolved inclusions; 0 syntax errors; 199 unresolved names (0,1 %)
+
+!ENTRY org.eclipse.cdt.dsf.gdb 4 104 2020-02-23 13:50:23.247
+!MESSAGE Program file does not exist
+!STACK 0
+java.io.FileNotFoundException: /home/sgx/eclipse-workspace/SGX_SQLite/sgx/enclave_sqlite/app not found
+	at org.eclipse.cdt.dsf.gdb.launching.LaunchUtils.verifyProgramPath(LaunchUtils.java:131)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.checkBinaryDetails(GdbLaunchDelegate.java:315)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.launchDebugSession(GdbLaunchDelegate.java:142)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.launchDebugger(GdbLaunchDelegate.java:106)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.launch(GdbLaunchDelegate.java:94)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:860)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:719)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1017)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$2.run(DebugUIPlugin.java:1220)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 104 2020-02-23 13:50:23.247
+!MESSAGE /home/sgx/eclipse-workspace/SGX_SQLite/sgx/enclave_sqlite/app not found
+!STACK 0
+java.io.FileNotFoundException: /home/sgx/eclipse-workspace/SGX_SQLite/sgx/enclave_sqlite/app not found
+	at org.eclipse.cdt.dsf.gdb.launching.LaunchUtils.verifyProgramPath(LaunchUtils.java:131)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.checkBinaryDetails(GdbLaunchDelegate.java:315)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.launchDebugSession(GdbLaunchDelegate.java:142)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.launchDebugger(GdbLaunchDelegate.java:106)
+	at org.eclipse.cdt.dsf.gdb.launching.GdbLaunchDelegate.launch(GdbLaunchDelegate.java:94)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:860)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:719)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1017)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$2.run(DebugUIPlugin.java:1220)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.cdt.launch 4 104 2020-02-23 13:51:05.493
+!MESSAGE Program file does not exist
+!STACK 0
+java.io.FileNotFoundException: /home/sgx/eclipse-workspace/SGX_SQLite/sgx/enclave_sqlite/app not found
+	at org.eclipse.cdt.launch.AbstractCLaunchDelegate2.verifyProgramPath(AbstractCLaunchDelegate2.java:703)
+	at org.eclipse.cdt.launch.internal.LocalRunLaunchDelegate.checkBinaryDetails(LocalRunLaunchDelegate.java:263)
+	at org.eclipse.cdt.launch.internal.LocalRunLaunchDelegate.runLocalApplication(LocalRunLaunchDelegate.java:91)
+	at org.eclipse.cdt.launch.internal.LocalRunLaunchDelegate.launch(LocalRunLaunchDelegate.java:79)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:860)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:719)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1017)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$2.run(DebugUIPlugin.java:1220)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+!SUBENTRY 1 org.eclipse.cdt.launch 4 104 2020-02-23 13:51:05.493
+!MESSAGE /home/sgx/eclipse-workspace/SGX_SQLite/sgx/enclave_sqlite/app not found
+!STACK 0
+java.io.FileNotFoundException: /home/sgx/eclipse-workspace/SGX_SQLite/sgx/enclave_sqlite/app not found
+	at org.eclipse.cdt.launch.AbstractCLaunchDelegate2.verifyProgramPath(AbstractCLaunchDelegate2.java:703)
+	at org.eclipse.cdt.launch.internal.LocalRunLaunchDelegate.checkBinaryDetails(LocalRunLaunchDelegate.java:263)
+	at org.eclipse.cdt.launch.internal.LocalRunLaunchDelegate.runLocalApplication(LocalRunLaunchDelegate.java:91)
+	at org.eclipse.cdt.launch.internal.LocalRunLaunchDelegate.launch(LocalRunLaunchDelegate.java:79)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:860)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:719)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1017)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$2.run(DebugUIPlugin.java:1220)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.cdt.launch 4 150 2020-02-23 13:52:13.136
+!MESSAGE Error starting process.
+!STACK 0
+java.io.IOException: Exec_tty error:Cannot run program "/home/sgx/eclipse-workspace/SGX_SQLite/sgx/enclave_sqlite/untrusted/App.cpp": Unknown reason
+	at org.eclipse.cdt.utils.spawner.Spawner.exec_pty(Spawner.java:390)
+	at org.eclipse.cdt.utils.spawner.Spawner.<init>(Spawner.java:102)
+	at org.eclipse.cdt.utils.spawner.ProcessFactory.exec(ProcessFactory.java:97)
+	at org.eclipse.cdt.launch.internal.LocalRunLaunchDelegate.exec(LocalRunLaunchDelegate.java:284)
+	at org.eclipse.cdt.launch.internal.LocalRunLaunchDelegate.runLocalApplication(LocalRunLaunchDelegate.java:111)
+	at org.eclipse.cdt.launch.internal.LocalRunLaunchDelegate.launch(LocalRunLaunchDelegate.java:79)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:860)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:719)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1017)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$2.run(DebugUIPlugin.java:1220)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+!SUBENTRY 1 org.eclipse.cdt.launch 4 150 2020-02-23 13:52:13.136
+!MESSAGE Exec_tty error:Cannot run program "/home/sgx/eclipse-workspace/SGX_SQLite/sgx/enclave_sqlite/untrusted/App.cpp": Unknown reason
+!STACK 0
+java.io.IOException: Exec_tty error:Cannot run program "/home/sgx/eclipse-workspace/SGX_SQLite/sgx/enclave_sqlite/untrusted/App.cpp": Unknown reason
+	at org.eclipse.cdt.utils.spawner.Spawner.exec_pty(Spawner.java:390)
+	at org.eclipse.cdt.utils.spawner.Spawner.<init>(Spawner.java:102)
+	at org.eclipse.cdt.utils.spawner.ProcessFactory.exec(ProcessFactory.java:97)
+	at org.eclipse.cdt.launch.internal.LocalRunLaunchDelegate.exec(LocalRunLaunchDelegate.java:284)
+	at org.eclipse.cdt.launch.internal.LocalRunLaunchDelegate.runLocalApplication(LocalRunLaunchDelegate.java:111)
+	at org.eclipse.cdt.launch.internal.LocalRunLaunchDelegate.launch(LocalRunLaunchDelegate.java:79)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:860)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:719)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1017)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$2.run(DebugUIPlugin.java:1220)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.cdt.launch 4 150 2020-02-23 13:53:54.723
+!MESSAGE Error starting process.
+!STACK 0
+java.io.IOException: Exec_tty error:Cannot run program "/home/sgx/eclipse-workspace/SGX_SQLite/sgx/enclave_sqlite/untrusted/App.cpp": Unknown reason
+	at org.eclipse.cdt.utils.spawner.Spawner.exec_pty(Spawner.java:390)
+	at org.eclipse.cdt.utils.spawner.Spawner.<init>(Spawner.java:102)
+	at org.eclipse.cdt.utils.spawner.ProcessFactory.exec(ProcessFactory.java:97)
+	at org.eclipse.cdt.launch.internal.LocalRunLaunchDelegate.exec(LocalRunLaunchDelegate.java:284)
+	at org.eclipse.cdt.launch.internal.LocalRunLaunchDelegate.runLocalApplication(LocalRunLaunchDelegate.java:111)
+	at org.eclipse.cdt.launch.internal.LocalRunLaunchDelegate.launch(LocalRunLaunchDelegate.java:79)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:860)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:719)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1017)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$2.run(DebugUIPlugin.java:1220)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+!SUBENTRY 1 org.eclipse.cdt.launch 4 150 2020-02-23 13:53:54.723
+!MESSAGE Exec_tty error:Cannot run program "/home/sgx/eclipse-workspace/SGX_SQLite/sgx/enclave_sqlite/untrusted/App.cpp": Unknown reason
+!STACK 0
+java.io.IOException: Exec_tty error:Cannot run program "/home/sgx/eclipse-workspace/SGX_SQLite/sgx/enclave_sqlite/untrusted/App.cpp": Unknown reason
+	at org.eclipse.cdt.utils.spawner.Spawner.exec_pty(Spawner.java:390)
+	at org.eclipse.cdt.utils.spawner.Spawner.<init>(Spawner.java:102)
+	at org.eclipse.cdt.utils.spawner.ProcessFactory.exec(ProcessFactory.java:97)
+	at org.eclipse.cdt.launch.internal.LocalRunLaunchDelegate.exec(LocalRunLaunchDelegate.java:284)
+	at org.eclipse.cdt.launch.internal.LocalRunLaunchDelegate.runLocalApplication(LocalRunLaunchDelegate.java:111)
+	at org.eclipse.cdt.launch.internal.LocalRunLaunchDelegate.launch(LocalRunLaunchDelegate.java:79)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:860)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:719)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1017)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$2.run(DebugUIPlugin.java:1220)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.cdt.core 1 0 2020-02-23 13:56:53.397
+!MESSAGE Indexed 'SQG_SQLite2' (0 sources, 0 headers) in 0 sec: 0 declarations; 0 references; 0 unresolved inclusions; 0 syntax errors; 0 unresolved names (0 %)
+
+!ENTRY org.eclipse.e4.ui.workbench 4 0 2020-02-23 13:57:27.993
+!MESSAGE Command 'com.intel.sgx.command.enclaveConfigHandler' failed
+!STACK 0
+org.eclipse.core.commands.ExecutionException: Error executing 'com.intel.sgx.command.enclaveConfigHandler': java.lang.NullPointerException
+	at org.eclipse.e4.core.commands.internal.HandlerServiceHandler.execute(HandlerServiceHandler.java:170)
+	at org.eclipse.core.commands.Command.executeWithChecks(Command.java:488)
+	at org.eclipse.core.commands.ParameterizedCommand.executeWithChecks(ParameterizedCommand.java:487)
+	at org.eclipse.e4.core.commands.internal.HandlerServiceImpl.executeHandler(HandlerServiceImpl.java:213)
+	at org.eclipse.e4.ui.workbench.renderers.swt.HandledContributionItem.executeItem(HandledContributionItem.java:438)
+	at org.eclipse.e4.ui.workbench.renderers.swt.AbstractContributionItem.handleWidgetSelection(AbstractContributionItem.java:449)
+	at org.eclipse.e4.ui.workbench.renderers.swt.AbstractContributionItem.lambda$2(AbstractContributionItem.java:475)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:89)
+	at org.eclipse.swt.widgets.Display.sendEvent(Display.java:5676)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1423)
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:4935)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:4429)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1160)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:338)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1049)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:155)
+	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:660)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:338)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:559)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:154)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:150)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:203)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:137)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:107)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:401)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:255)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:657)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:594)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1465)
+	at org.eclipse.equinox.launcher.Main.main(Main.java:1438)
+Caused by: org.eclipse.e4.core.di.InjectionException: java.lang.NullPointerException
+	at org.eclipse.e4.core.internal.di.MethodRequestor.execute(MethodRequestor.java:68)
+	at org.eclipse.e4.core.internal.di.InjectorImpl.invokeUsingClass(InjectorImpl.java:318)
+	at org.eclipse.e4.core.internal.di.InjectorImpl.invoke(InjectorImpl.java:252)
+	at org.eclipse.e4.core.contexts.ContextInjectionFactory.invoke(ContextInjectionFactory.java:173)
+	at org.eclipse.e4.core.commands.internal.HandlerServiceHandler.execute(HandlerServiceHandler.java:156)
+	... 33 more
+Caused by: java.lang.NullPointerException
+	at com.intel.sgx.handlers.EnclaveConfigHandler.readConfig(Unknown Source)
+	at com.intel.sgx.handlers.EnclaveConfigHandler.executeSGXStuff(Unknown Source)
+	at com.intel.sgx.handlers.SGXHandler.execute(Unknown Source)
+	at org.eclipse.ui.internal.handlers.HandlerProxy.execute(HandlerProxy.java:283)
+	at org.eclipse.ui.internal.handlers.E4HandlerProxy.execute(E4HandlerProxy.java:97)
+	at jdk.internal.reflect.GeneratedMethodAccessor64.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.eclipse.e4.core.internal.di.MethodRequestor.execute(MethodRequestor.java:58)
+	... 37 more
+
+!ENTRY org.eclipse.cdt.core 1 0 2020-02-23 14:02:05.288
+!MESSAGE Indexed 'SGX_SQLite' (7 sources, 313 headers) in 5,14 sec: 41.699 declarations; 157.924 references; 1 unresolved inclusions; 0 syntax errors; 199 unresolved names (0,1 %)
+
+!ENTRY org.eclipse.cdt.core 1 0 2020-02-23 15:05:25.495
+!MESSAGE Indexed 'SGX_SQLite' (6 sources, 308 headers) in 5,09 sec: 40.804 declarations; 155.424 references; 2 unresolved inclusions; 0 syntax errors; 240 unresolved names (0,12 %)
+
+!ENTRY org.eclipse.cdt.core 1 0 2020-02-23 15:08:11.022
+!MESSAGE Indexed 'SGX_SQLite' (6 sources, 304 headers) in 4,91 sec: 40.810 declarations; 155.315 references; 2 unresolved inclusions; 0 syntax errors; 14 unresolved names (0,0071 %)
+
+!ENTRY org.eclipse.cdt.core 1 0 2020-02-23 15:11:04.675
+!MESSAGE Indexed 'SGX_SQLite' (6 sources, 304 headers) in 4,7 sec: 40.810 declarations; 155.315 references; 2 unresolved inclusions; 0 syntax errors; 14 unresolved names (0,0071 %)
+!SESSION 2020-02-23 15:16:32.779 -----------------------------------------------
+eclipse.buildId=4.14.0.I20191210-0610
+java.version=11.0.6
+java.vendor=Ubuntu
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=de_DE
+Framework arguments:  -product org.eclipse.epp.package.cpp.product
+Command-line arguments:  -data file:/home/sgx/eclipse-workspace/ -os linux -ws gtk -arch x86_64 -product org.eclipse.epp.package.cpp.product
+
+!ENTRY org.eclipse.cdt.core 1 0 2020-02-23 15:16:48.297
+!MESSAGE Indexed 'SQG_SQLite2' (2 sources, 91 headers) in 1,19 sec: 2.714 declarations; 3.740 references; 2 unresolved inclusions; 0 syntax errors; 3 unresolved names (0,046 %)
+
+!ENTRY org.eclipse.cdt.core 1 0 2020-02-23 15:18:09.236
+!MESSAGE Indexed 'SGX_SQLite' (6 sources, 304 headers) in 7,73 sec: 40.810 declarations; 155.315 references; 2 unresolved inclusions; 0 syntax errors; 14 unresolved names (0,0071 %)
+
+!ENTRY org.eclipse.cdt.core 1 0 2020-02-23 15:20:22.378
+!MESSAGE Indexed 'SGX_SQLite' (6 sources, 304 headers) in 6,42 sec: 40.810 declarations; 155.315 references; 2 unresolved inclusions; 0 syntax errors; 14 unresolved names (0,0071 %)
+
+!ENTRY org.eclipse.cdt.core 1 0 2020-02-23 15:25:47.639
+!MESSAGE Indexed 'SGX_SQLite' (5 sources, 282 headers) in 5,73 sec: 39.053 declarations; 152.721 references; 3 unresolved inclusions; 0 syntax errors; 49 unresolved names (0,026 %)
+
+!ENTRY org.eclipse.jface 2 0 2020-02-23 15:31:45.168
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2020-02-23 15:31:45.168
+!MESSAGE A conflict occurred for ALT+C:
+Binding(ALT+C,
+	ParameterizedCommand(Command(org.eclipse.cdt.ui.refactor.extract.constant,Extract Constant - Refactoring ,
+		Extracts a constant for the selected expression,
+		Category(org.eclipse.cdt.ui.category.refactoring,Refactor - C++,C/C++ Refactorings,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@7c84d85d,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.cdt.ui.cEditorScope,,,system)
+Binding(ALT+C,
+	ParameterizedCommand(Command(org.eclipse.tm.terminal.command1,Terminal view insert,
+		,
+		Category(org.eclipse.tm.terminal.category1,Terminal view commands,Terminal view commands,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@6b56b894,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.tm.terminal.TerminalContext,,,system)
+
+!ENTRY org.eclipse.jface 2 0 2020-02-23 15:31:45.173
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2020-02-23 15:31:45.173
+!MESSAGE A conflict occurred for CTRL+SHIFT+C:
+Binding(CTRL+SHIFT+C,
+	ParameterizedCommand(Command(org.eclipse.cdt.ui.edit.text.c.toggle.comment,Toggle Comment,
+		Toggle comment the selected lines,
+		Category(org.eclipse.cdt.ui.category.source,Source,Source commands,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@5b7223c0,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.cdt.ui.cEditorScope,,,system)
+Binding(CTRL+SHIFT+C,
+	ParameterizedCommand(Command(org.eclipse.tm.terminal.copy,Copy,
+		,
+		Category(org.eclipse.tm.terminal.category1,Terminal view commands,Terminal view commands,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@747e7473,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.tm.terminal.EditContext,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2020-02-23 15:31:45.173
+!MESSAGE A conflict occurred for ALT+ARROW_UP:
+Binding(ALT+ARROW_UP,
+	ParameterizedCommand(Command(org.eclipse.tm.terminal.maximize,Maximize Active View or Editor,
+		,
+		Category(org.eclipse.tm.terminal.category1,Terminal view commands,Terminal view commands,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@688d4fbf,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.tm.terminal.EditContext,,,system)
+Binding(ALT+ARROW_UP,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.text.moveLineUp,Move Lines Up,
+		Moves the selected lines up,
+		Category(org.eclipse.ui.category.textEditor,Text Editing,Text Editing Commands,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@2a58a3f8,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.textEditorScope,,,system)

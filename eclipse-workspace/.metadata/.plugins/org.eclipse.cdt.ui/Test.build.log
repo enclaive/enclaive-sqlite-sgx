@@ -1,0 +1,13 @@
+12:27:07 **** Incremental Build of configuration Intel(R) SGX Simulation Debug for project Test ****
+make SGX_DEBUG=1 SGX_MODE=SIM -f sgx/Makefile all 
+make -C ./sgx/enclave_test  -f sgx_u.mk all;
+make[1]: Verzeichnis „/home/sgx/eclipse-workspace/Test/sgx/enclave_test“ wird betreten
+make[1]: Für das Ziel „all“ ist nichts zu tun.
+make[1]: Verzeichnis „/home/sgx/eclipse-workspace/Test/sgx/enclave_test“ wird verlassen
+make -C ./sgx/enclave_test    -f sgx_t.mk all;
+make[1]: Verzeichnis „/home/sgx/eclipse-workspace/Test/sgx/enclave_test“ wird betreten
+make[1]: Für das Ziel „all“ ist nichts zu tun.
+make[1]: Verzeichnis „/home/sgx/eclipse-workspace/Test/sgx/enclave_test“ wird verlassen
+
+12:27:07 Build Finished. 0 errors, 0 warnings. (took 75ms)
+
