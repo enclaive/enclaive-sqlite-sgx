@@ -21,8 +21,8 @@
     <stringAttribute key="org.eclipse.cdt.launch.PROGRAM_ARGUMENTS" value="test.db"/>
     <stringAttribute key="org.eclipse.cdt.launch.PROGRAM_NAME" value="sgx/enclave_sqlite/app"/>
     <stringAttribute key="org.eclipse.cdt.launch.PROJECT_ATTR" value="SGX_SQLite"/>
-    <booleanAttribute key="org.eclipse.cdt.launch.PROJECT_BUILD_CONFIG_AUTO_ATTR" value="false"/>
-    <stringAttribute key="org.eclipse.cdt.launch.PROJECT_BUILD_CONFIG_ID_ATTR" value="com.intel.sgx.configuration.Sim.Debug"/>
+    <booleanAttribute key="org.eclipse.cdt.launch.PROJECT_BUILD_CONFIG_AUTO_ATTR" value="true"/>
+    <stringAttribute key="org.eclipse.cdt.launch.PROJECT_BUILD_CONFIG_ID_ATTR" value=""/>
     <stringAttribute key="org.eclipse.cdt.launch.WORKING_DIRECTORY" value="${workspace_loc:SGX_SQLite}/sgx/enclave_sqlite"/>
     <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
         <listEntry value="/SGX_SQLite"/>
