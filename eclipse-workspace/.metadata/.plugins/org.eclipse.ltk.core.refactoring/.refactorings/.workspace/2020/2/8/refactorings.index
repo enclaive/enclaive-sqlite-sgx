@@ -5,3 +5,5 @@
 1582462805484	Delete resource 'SGX_SQLite/sgx/Makefile'
 1582466816469	Delete 3 resources
 1582469779835	Delete resource 'SQG_SQLite2'
+1582473750791	Delete resource 'SGX_SQLite/sgx/enclave_sqlite/Makefile.old'
+1582473754659	Delete resource 'SGX_SQLite/sgx/Makefile.old'
