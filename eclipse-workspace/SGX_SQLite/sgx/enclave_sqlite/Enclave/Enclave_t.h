@@ -16,6 +16,7 @@
 extern "C" {
 #endif
 
+void ecall_encrypt(void);
 void ecall_opendb(const char* dbname);
 void ecall_execute_sql(const char* sql);
 void ecall_closedb(void);

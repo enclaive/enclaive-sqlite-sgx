@@ -4054,6 +4054,7 @@ sgx_status_t sgx_ocall_switchless(const unsigned int index,
 # 1 "Enclave/../Enclave/../ocall_types.h" 1
 # 10 "Enclave/../Enclave/Enclave_t.h" 2
 # 19 "Enclave/../Enclave/Enclave_t.h"
+void ecall_encrypt(void);
 void ecall_opendb(const char* dbname);
 void ecall_execute_sql(const char* sql);
 void ecall_closedb(void);

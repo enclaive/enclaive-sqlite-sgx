@@ -114,6 +114,7 @@ int SGX_UBRIDGE(SGX_CDECL, sgx_thread_setwait_untrusted_events_ocall, (const voi
 int SGX_UBRIDGE(SGX_CDECL, sgx_thread_set_multiple_untrusted_events_ocall, (const void** waiters, size_t total));
 #endif
 
+sgx_status_t ecall_encrypt(sgx_enclave_id_t eid);
 sgx_status_t ecall_opendb(sgx_enclave_id_t eid, const char* dbname);
 sgx_status_t ecall_execute_sql(sgx_enclave_id_t eid, const char* sql);
 sgx_status_t ecall_closedb(sgx_enclave_id_t eid);

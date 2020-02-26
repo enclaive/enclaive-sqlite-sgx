@@ -44,6 +44,7 @@ int main(int argc, char *argv[]){
     }
     cout << "Info: SQLite SGX enclave successfully created." << endl;
 
+    ret = ecall_encrypt(eid);
 
     // Open SQLite database
     ret = ecall_opendb(eid, dbname);

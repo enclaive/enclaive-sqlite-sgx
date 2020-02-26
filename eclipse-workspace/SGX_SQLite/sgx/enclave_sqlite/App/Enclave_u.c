@@ -378,13 +378,20 @@ static const struct {
 		(void*)Enclave_sgx_thread_set_multiple_untrusted_events_ocall,
 	}
 };
+sgx_status_t ecall_encrypt(sgx_enclave_id_t eid)
+{
+	sgx_status_t status;
+	status = sgx_ecall(eid, 0, &ocall_table_Enclave, NULL);
+	return status;
+}
+
 sgx_status_t ecall_opendb(sgx_enclave_id_t eid, const char* dbname)
 {
 	sgx_status_t status;
 	ms_ecall_opendb_t ms;
 	ms.ms_dbname = dbname;
 	ms.ms_dbname_len = dbname ? strlen(dbname) + 1 : 0;
-	status = sgx_ecall(eid, 0, &ocall_table_Enclave, &ms);
+	status = sgx_ecall(eid, 1, &ocall_table_Enclave, &ms);
 	return status;
 }
 
@@ -394,14 +401,14 @@ sgx_status_t ecall_execute_sql(sgx_enclave_id_t eid, const char* sql)
 	ms_ecall_execute_sql_t ms;
 	ms.ms_sql = sql;
 	ms.ms_sql_len = sql ? strlen(sql) + 1 : 0;
-	status = sgx_ecall(eid, 1, &ocall_table_Enclave, &ms);
+	status = sgx_ecall(eid, 2, &ocall_table_Enclave, &ms);
 	return status;
 }
 
 sgx_status_t ecall_closedb(sgx_enclave_id_t eid)
 {
 	sgx_status_t status;
-	status = sgx_ecall(eid, 2, &ocall_table_Enclave, NULL);
+	status = sgx_ecall(eid, 3, &ocall_table_Enclave, NULL);
 	return status;
 }
 

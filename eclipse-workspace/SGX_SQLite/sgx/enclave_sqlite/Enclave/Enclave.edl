@@ -3,6 +3,7 @@ enclave {
     include "../ocall_types.h" // Need to import some type declartions from stdlib
 
     trusted {
+    	public void ecall_encrypt();
         public void ecall_opendb([in, string] const char *dbname); // open SQLite connection to dbname
         public void ecall_execute_sql([in, string] const char *sql); // Execute SQL statement inside enclave
         public void ecall_closedb(void); // close SQLite db connection

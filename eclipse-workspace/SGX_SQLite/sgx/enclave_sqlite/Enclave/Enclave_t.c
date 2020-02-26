@@ -180,6 +180,14 @@ typedef struct ms_sgx_thread_set_multiple_untrusted_events_ocall_t {
 	size_t ms_total;
 } ms_sgx_thread_set_multiple_untrusted_events_ocall_t;
 
+static sgx_status_t SGX_CDECL sgx_ecall_encrypt(void* pms)
+{
+	sgx_status_t status = SGX_SUCCESS;
+	if (pms != NULL) return SGX_ERROR_INVALID_PARAMETER;
+	ecall_encrypt();
+	return status;
+}
+
 static sgx_status_t SGX_CDECL sgx_ecall_opendb(void* pms)
 {
 	CHECK_REF_POINTER(pms, sizeof(ms_ecall_opendb_t));
@@ -284,10 +292,11 @@ static sgx_status_t SGX_CDECL sgx_ecall_closedb(void* pms)
 
 SGX_EXTERNC const struct {
 	size_t nr_ecall;
-	struct {void* ecall_addr; uint8_t is_priv; uint8_t is_switchless;} ecall_table[3];
+	struct {void* ecall_addr; uint8_t is_priv; uint8_t is_switchless;} ecall_table[4];
 } g_ecall_table = {
-	3,
+	4,
 	{
+		{(void*)(uintptr_t)sgx_ecall_encrypt, 0, 0},
 		{(void*)(uintptr_t)sgx_ecall_opendb, 0, 0},
 		{(void*)(uintptr_t)sgx_ecall_execute_sql, 0, 0},
 		{(void*)(uintptr_t)sgx_ecall_closedb, 0, 0},
@@ -296,34 +305,34 @@ SGX_EXTERNC const struct {
 
 SGX_EXTERNC const struct {
 	size_t nr_ocall;
-	uint8_t entry_table[24][3];
+	uint8_t entry_table[24][4];
 } g_dyn_entry_table = {
 	24,
 	{
-		{0, 0, 0, },
-		{0, 0, 0, },
-		{0, 0, 0, },
-		{0, 0, 0, },
-		{0, 0, 0, },
-		{0, 0, 0, },
-		{0, 0, 0, },
-		{0, 0, 0, },
-		{0, 0, 0, },
-		{0, 0, 0, },
-		{0, 0, 0, },
-		{0, 0, 0, },
-		{0, 0, 0, },
-		{0, 0, 0, },
-		{0, 0, 0, },
-		{0, 0, 0, },
-		{0, 0, 0, },
-		{0, 0, 0, },
-		{0, 0, 0, },
-		{0, 0, 0, },
-		{0, 0, 0, },
-		{0, 0, 0, },
-		{0, 0, 0, },
-		{0, 0, 0, },
+		{0, 0, 0, 0, },
+		{0, 0, 0, 0, },
+		{0, 0, 0, 0, },
+		{0, 0, 0, 0, },
+		{0, 0, 0, 0, },
+		{0, 0, 0, 0, },
+		{0, 0, 0, 0, },
+		{0, 0, 0, 0, },
+		{0, 0, 0, 0, },
+		{0, 0, 0, 0, },
+		{0, 0, 0, 0, },
+		{0, 0, 0, 0, },
+		{0, 0, 0, 0, },
+		{0, 0, 0, 0, },
+		{0, 0, 0, 0, },
+		{0, 0, 0, 0, },
+		{0, 0, 0, 0, },
+		{0, 0, 0, 0, },
+		{0, 0, 0, 0, },
+		{0, 0, 0, 0, },
+		{0, 0, 0, 0, },
+		{0, 0, 0, 0, },
+		{0, 0, 0, 0, },
+		{0, 0, 0, 0, },
 	}
 };
 
