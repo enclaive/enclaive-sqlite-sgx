@@ -14,6 +14,8 @@
 // For open64 need to define this
 #define O_TMPFILE (__O_TMPFILE | O_DIRECTORY)
 
+SGX_FILE* a;
+
 long int sysconf(int name){
     char error_msg[256];
     snprintf(error_msg, sizeof(error_msg), "%s%s", "Error: no ocall implementation for ", __func__);
@@ -22,6 +24,8 @@ long int sysconf(int name){
 }
 
 int open64(const char *filename, int flags, ...){
+
+	a = sgx_fopen_auto_key(filename, "w");
     mode_t mode = 0; // file permission bitmask
 
     // Get the mode_t from arguments

@@ -4053,11 +4053,108 @@ sgx_status_t sgx_ocall_switchless(const unsigned int index,
 
 # 1 "Enclave/../Enclave/../ocall_types.h" 1
 # 10 "Enclave/../Enclave/Enclave_t.h" 2
-# 19 "Enclave/../Enclave/Enclave_t.h"
-void ecall_encrypt(void);
+# 1 "/opt/intel/sgxsdk/include/sgx_tprotected_fs.h" 1
+# 39 "/opt/intel/sgxsdk/include/sgx_tprotected_fs.h"
+       
+
+
+
+
+# 1 "/usr/lib/gcc/x86_64-linux-gnu/7/include/stddef.h" 1 3 4
+# 45 "/opt/intel/sgxsdk/include/sgx_tprotected_fs.h" 2
+
+
+# 1 "/opt/intel/sgxsdk/include/sgx_key.h" 1
+# 43 "/opt/intel/sgxsdk/include/sgx_key.h"
+# 1 "/opt/intel/sgxsdk/include/sgx_attributes.h" 1
+# 53 "/opt/intel/sgxsdk/include/sgx_attributes.h"
+typedef struct _attributes_t
+{
+    uint64_t flags;
+    uint64_t xfrm;
+} sgx_attributes_t;
+
+
+typedef uint32_t sgx_misc_select_t;
+
+typedef struct _sgx_misc_attribute_t {
+    sgx_attributes_t secs_attr;
+    sgx_misc_select_t misc_select;
+} sgx_misc_attribute_t;
+# 44 "/opt/intel/sgxsdk/include/sgx_key.h" 2
+# 64 "/opt/intel/sgxsdk/include/sgx_key.h"
+typedef uint8_t sgx_key_128bit_t[16];
+typedef uint16_t sgx_isv_svn_t;
+typedef uint16_t sgx_config_svn_t;
+typedef uint8_t sgx_config_id_t[64];
+
+
+typedef struct _sgx_cpu_svn_t
+{
+    uint8_t svn[16];
+} sgx_cpu_svn_t;
+
+typedef struct _sgx_key_id_t
+{
+    uint8_t id[32];
+} sgx_key_id_t;
+
+
+
+typedef struct _key_request_t
+{
+    uint16_t key_name;
+    uint16_t key_policy;
+    sgx_isv_svn_t isv_svn;
+    uint16_t reserved1;
+    sgx_cpu_svn_t cpu_svn;
+    sgx_attributes_t attribute_mask;
+    sgx_key_id_t key_id;
+    sgx_misc_select_t misc_mask;
+    sgx_config_svn_t config_svn;
+    uint8_t reserved2[434];
+} sgx_key_request_t;
+# 48 "/opt/intel/sgxsdk/include/sgx_tprotected_fs.h" 2
+# 77 "/opt/intel/sgxsdk/include/sgx_tprotected_fs.h"
+void* sgx_fopen(const char* filename, const char* mode, const sgx_key_128bit_t *key);
+# 94 "/opt/intel/sgxsdk/include/sgx_tprotected_fs.h"
+void* sgx_fopen_auto_key(const char* filename, const char* mode);
+# 109 "/opt/intel/sgxsdk/include/sgx_tprotected_fs.h"
+size_t sgx_fwrite(const void* ptr, size_t size, size_t count, void* stream);
+# 124 "/opt/intel/sgxsdk/include/sgx_tprotected_fs.h"
+size_t sgx_fread(void* ptr, size_t size, size_t count, void* stream);
+# 136 "/opt/intel/sgxsdk/include/sgx_tprotected_fs.h"
+int64_t sgx_ftell(void* stream);
+# 150 "/opt/intel/sgxsdk/include/sgx_tprotected_fs.h"
+int32_t sgx_fseek(void* stream, int64_t offset, int origin);
+# 162 "/opt/intel/sgxsdk/include/sgx_tprotected_fs.h"
+int32_t sgx_fflush(void* stream);
+# 174 "/opt/intel/sgxsdk/include/sgx_tprotected_fs.h"
+int32_t sgx_ferror(void* stream);
+# 186 "/opt/intel/sgxsdk/include/sgx_tprotected_fs.h"
+int32_t sgx_feof(void* stream);
+# 199 "/opt/intel/sgxsdk/include/sgx_tprotected_fs.h"
+void sgx_clearerr(void* stream);
+# 212 "/opt/intel/sgxsdk/include/sgx_tprotected_fs.h"
+int32_t sgx_fclose(void* stream);
+# 224 "/opt/intel/sgxsdk/include/sgx_tprotected_fs.h"
+int32_t sgx_remove(const char* filename);
+# 240 "/opt/intel/sgxsdk/include/sgx_tprotected_fs.h"
+int32_t sgx_fexport_auto_key(const char* filename, sgx_key_128bit_t *key);
+# 255 "/opt/intel/sgxsdk/include/sgx_tprotected_fs.h"
+int32_t sgx_fimport_auto_key(const char* filename, const sgx_key_128bit_t *key);
+# 269 "/opt/intel/sgxsdk/include/sgx_tprotected_fs.h"
+int32_t sgx_fclear_cache(void* stream);
+# 11 "Enclave/../Enclave/Enclave_t.h" 2
+# 20 "Enclave/../Enclave/Enclave_t.h"
 void ecall_opendb(const char* dbname);
 void ecall_execute_sql(const char* sql);
 void ecall_closedb(void);
+void* ecall_fopen(const char* filename, const char* mode);
+size_t ecall_fwrite(void* fp, char data[100]);
+uint64_t ecall_fsize(void* fp);
+size_t ecall_fread(void* fp, char* readData, uint64_t size);
+int32_t ecall_fclose(void* fp);
 
 sgx_status_t ocall_println_string(const char* str);
 sgx_status_t ocall_print_string(const char* str);
@@ -4083,10 +4180,22 @@ sgx_status_t sgx_thread_wait_untrusted_event_ocall(int* retval, const void* self
 sgx_status_t sgx_thread_set_untrusted_event_ocall(int* retval, const void* waiter);
 sgx_status_t sgx_thread_setwait_untrusted_events_ocall(int* retval, const void* waiter, const void* self);
 sgx_status_t sgx_thread_set_multiple_untrusted_events_ocall(int* retval, const void** waiters, size_t total);
+sgx_status_t u_sgxprotectedfs_exclusive_file_open(void** retval, const char* filename, uint8_t read_only, int64_t* file_size, int32_t* error_code);
+sgx_status_t u_sgxprotectedfs_check_if_file_exists(uint8_t* retval, const char* filename);
+sgx_status_t u_sgxprotectedfs_fread_node(int32_t* retval, void* f, uint64_t node_number, uint8_t* buffer, uint32_t node_size);
+sgx_status_t u_sgxprotectedfs_fwrite_node(int32_t* retval, void* f, uint64_t node_number, uint8_t* buffer, uint32_t node_size);
+sgx_status_t u_sgxprotectedfs_fclose(int32_t* retval, void* f);
+sgx_status_t u_sgxprotectedfs_fflush(uint8_t* retval, void* f);
+sgx_status_t u_sgxprotectedfs_remove(int32_t* retval, const char* filename);
+sgx_status_t u_sgxprotectedfs_recovery_file_open(void** retval, const char* filename);
+sgx_status_t u_sgxprotectedfs_fwrite_recovery_node(uint8_t* retval, void* f, uint8_t* data, uint32_t data_length);
+sgx_status_t u_sgxprotectedfs_do_file_recovery(int32_t* retval, const char* filename, const char* recovery_filename, uint32_t node_size);
 # 13 "Enclave/ocall_interface.c" 2
 
 
 
+
+void* a;
 
 long int sysconf(int name){
     char error_msg[256];
@@ -4096,65 +4205,67 @@ long int sysconf(int name){
 }
 
 int open64(const char *filename, int flags, ...){
+
+ a = sgx_fopen_auto_key(filename, "w");
     mode_t mode = 0;
 
 
  if ((flags & 
-# 28 "Enclave/ocall_interface.c" 3 4
+# 32 "Enclave/ocall_interface.c" 3 4
              0100
-# 28 "Enclave/ocall_interface.c"
+# 32 "Enclave/ocall_interface.c"
                     ) || (flags & (
-# 28 "Enclave/ocall_interface.c" 3 4
+# 32 "Enclave/ocall_interface.c" 3 4
                                   (020000000 | 0200000) 
-# 28 "Enclave/ocall_interface.c"
+# 32 "Enclave/ocall_interface.c"
                                   | 
-# 28 "Enclave/ocall_interface.c" 3 4
+# 32 "Enclave/ocall_interface.c" 3 4
                                   0200000
-# 28 "Enclave/ocall_interface.c"
+# 32 "Enclave/ocall_interface.c"
                                   )) == (
-# 28 "Enclave/ocall_interface.c" 3 4
+# 32 "Enclave/ocall_interface.c" 3 4
                                                 (020000000 | 0200000) 
-# 28 "Enclave/ocall_interface.c"
+# 32 "Enclave/ocall_interface.c"
                                                 | 
-# 28 "Enclave/ocall_interface.c" 3 4
+# 32 "Enclave/ocall_interface.c" 3 4
                                                 0200000
-# 28 "Enclave/ocall_interface.c"
+# 32 "Enclave/ocall_interface.c"
                                                 )) {
   va_list valist;
   
-# 30 "Enclave/ocall_interface.c" 3 4
+# 34 "Enclave/ocall_interface.c" 3 4
  __builtin_va_start(
-# 30 "Enclave/ocall_interface.c"
+# 34 "Enclave/ocall_interface.c"
  valist
-# 30 "Enclave/ocall_interface.c" 3 4
+# 34 "Enclave/ocall_interface.c" 3 4
  ,
-# 30 "Enclave/ocall_interface.c"
+# 34 "Enclave/ocall_interface.c"
  flags
-# 30 "Enclave/ocall_interface.c" 3 4
+# 34 "Enclave/ocall_interface.c" 3 4
  )
-# 30 "Enclave/ocall_interface.c"
+# 34 "Enclave/ocall_interface.c"
                         ;
   mode = 
-# 31 "Enclave/ocall_interface.c" 3 4
+# 35 "Enclave/ocall_interface.c" 3 4
         __builtin_va_arg(
-# 31 "Enclave/ocall_interface.c"
+# 35 "Enclave/ocall_interface.c"
         valist
-# 31 "Enclave/ocall_interface.c" 3 4
+# 35 "Enclave/ocall_interface.c" 3 4
         ,
-# 31 "Enclave/ocall_interface.c"
+# 35 "Enclave/ocall_interface.c"
         mode_t
-# 31 "Enclave/ocall_interface.c" 3 4
+# 35 "Enclave/ocall_interface.c" 3 4
         )
-# 31 "Enclave/ocall_interface.c"
+# 35 "Enclave/ocall_interface.c"
                               ;
   
-# 32 "Enclave/ocall_interface.c" 3 4
+# 36 "Enclave/ocall_interface.c" 3 4
  __builtin_va_end(
-# 32 "Enclave/ocall_interface.c"
+# 36 "Enclave/ocall_interface.c"
  valist
-# 32 "Enclave/ocall_interface.c" 3 4
+# 36 "Enclave/ocall_interface.c" 3 4
  )
-# 32 "Enclave/ocall_interface.c"
+# 36 "Enclave/ocall_interface.c"
                ;
  }
 
@@ -4340,39 +4451,39 @@ int fcntl(int fd, int cmd, ... ){
 
     va_list valist;
  
-# 216 "Enclave/ocall_interface.c" 3 4
+# 220 "Enclave/ocall_interface.c" 3 4
 __builtin_va_start(
-# 216 "Enclave/ocall_interface.c"
+# 220 "Enclave/ocall_interface.c"
 valist
-# 216 "Enclave/ocall_interface.c" 3 4
+# 220 "Enclave/ocall_interface.c" 3 4
 ,
-# 216 "Enclave/ocall_interface.c"
+# 220 "Enclave/ocall_interface.c"
 cmd
-# 216 "Enclave/ocall_interface.c" 3 4
+# 220 "Enclave/ocall_interface.c" 3 4
 )
-# 216 "Enclave/ocall_interface.c"
+# 220 "Enclave/ocall_interface.c"
                      ;
  void* arg = 
-# 217 "Enclave/ocall_interface.c" 3 4
+# 221 "Enclave/ocall_interface.c" 3 4
             __builtin_va_arg(
-# 217 "Enclave/ocall_interface.c"
+# 221 "Enclave/ocall_interface.c"
             valist
-# 217 "Enclave/ocall_interface.c" 3 4
+# 221 "Enclave/ocall_interface.c" 3 4
             ,
-# 217 "Enclave/ocall_interface.c"
+# 221 "Enclave/ocall_interface.c"
             void*
-# 217 "Enclave/ocall_interface.c" 3 4
+# 221 "Enclave/ocall_interface.c" 3 4
             )
-# 217 "Enclave/ocall_interface.c"
+# 221 "Enclave/ocall_interface.c"
                                  ;
  
-# 218 "Enclave/ocall_interface.c" 3 4
+# 222 "Enclave/ocall_interface.c" 3 4
 __builtin_va_end(
-# 218 "Enclave/ocall_interface.c"
+# 222 "Enclave/ocall_interface.c"
 valist
-# 218 "Enclave/ocall_interface.c" 3 4
+# 222 "Enclave/ocall_interface.c" 3 4
 )
-# 218 "Enclave/ocall_interface.c"
+# 222 "Enclave/ocall_interface.c"
               ;
 
     int ret;
@@ -4459,9 +4570,9 @@ uid_t geteuid(void){
 
 char* getenv(const char *name){
     char* ret = 
-# 303 "Enclave/ocall_interface.c" 3 4
+# 307 "Enclave/ocall_interface.c" 3 4
                ((void *)0)
-# 303 "Enclave/ocall_interface.c"
+# 307 "Enclave/ocall_interface.c"
                    ;
     sgx_status_t status = ocall_getenv(&ret, name);
     if (status != SGX_SUCCESS) {
