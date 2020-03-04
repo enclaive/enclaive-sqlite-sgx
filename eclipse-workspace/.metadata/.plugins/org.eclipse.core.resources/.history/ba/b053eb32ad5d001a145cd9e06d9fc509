@@ -27,7 +27,7 @@ void ecall_opendb(const char *dbname){
     //rc = sqlite3_open(dbname, &db);
     ocall_println_string("");
     ocall_println_string(getSgxVfsName().c_str());
-    rc = sqlite3_open_v2(dbname, &db, 0x00000002, getSgxVfsName().c_str()); // Opening database
+    rc = sqlite3_open_v2(dbname, &db, 0, getSgxVfsName().c_str()); // Opening database
     if (rc) {
         ocall_println_string("SQLite error - can't open database connection: ");
         ocall_println_string(sqlite3_errmsg(db));

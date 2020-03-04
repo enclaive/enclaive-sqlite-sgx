@@ -8,7 +8,6 @@
 #include <mutex>
 #include <assert.h>
 #include <random>
-#include "sqlite3.h"
 
 #include "../Enclave/Enclave_t.h"
 #include "../Enclave/sqlite3.h"
@@ -77,8 +76,10 @@ std::string getSgxVfsName() {
         }
 
         static int xWrite(sqlite3_file* fileBase, const void* buffer, int quantity, sqlite3_int64 offset) {
+        	off_t ofst;
+        	size_t nWrite;
 
-
+        	ofst = lseek(p->fd, offset, SEEK_SET);
 
         	return SQLITE_OK;
         }
