@@ -1,3 +1,9 @@
+/*
+ * SgxVfsHandler.cpp
+ *
+ *  Created on: 04.03.2020
+ *      Author: sgx
+ */
 #include <string.h>
 #include <mutex>
 #include <assert.h>
@@ -7,10 +13,10 @@
 #include "../Enclave/sqlite3.h"
 #include "sgx_tprotected_fs.h"
 
-using namespace std;
+
 
 // this function registers our custom VFS and return its name
-string getSgxVfsName() {
+std::string getSgxVfsName() {
     // a mutex protects the body of this function because we don't want to register the VFS twice
     static std::mutex mutex;
     std::lock_guard<std::mutex> lock(mutex);
@@ -189,3 +195,7 @@ string getSgxVfsName() {
 
     return vfsName;
 }
+
+
+
+

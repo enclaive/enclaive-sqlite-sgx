@@ -1,0 +1,19 @@
+#ifndef SGX_VFS_HANDLER
+#define SGX_VFS_HANDLER
+
+#include <string.h>
+
+
+/*
+** Make sure we can call this stuff from C++.
+*/
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+std:string getSgxVfsName();
+
+#ifdef __cplusplus
+}
+#endif /* __cplusplus */
+#endif

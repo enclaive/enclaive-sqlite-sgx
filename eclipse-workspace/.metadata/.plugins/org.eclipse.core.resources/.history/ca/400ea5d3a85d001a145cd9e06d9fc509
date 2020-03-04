@@ -1,0 +1,17 @@
+/*
+ * test.h
+ *
+ *  Created on: 04.03.2020
+ *      Author: sgx
+ */
+
+#ifndef ENCLAVE_SQLITE_ENCLAVE_TEST_H_
+#define ENCLAVE_SQLITE_ENCLAVE_TEST_H_
+
+class test {
+public:
+	test();
+	virtual ~test();
+};
+
+#endif /* ENCLAVE_SQLITE_ENCLAVE_TEST_H_ */

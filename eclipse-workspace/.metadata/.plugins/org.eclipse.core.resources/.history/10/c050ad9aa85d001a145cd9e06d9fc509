@@ -1,0 +1,9 @@
+#ifndef SGX_VFS_HANDLER
+#define SGX_VFS_HANDLER
+
+#include <string.h>
+
+
+class getSgxVfsName {
+	std:string getSgxVfsName();
+};

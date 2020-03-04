@@ -4,3 +4,6 @@
 1583098219734	Rename resource 'SGX-Secure-IO-SQLite'
 1583098248835	Rename resource 'SGX-Secure-IO-SQLite.cpp'
 1583099720102	Rename resource 'SgxIO-sqlite.cpp'
+1583279044001	Rename resource 'SgxVfsHandler.h'
+1583279050713	Rename resource 'SgxVfsHandler.cpp'
+1583279965920	Rename resource 'SgxVfsHandler'

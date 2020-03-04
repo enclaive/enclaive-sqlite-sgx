@@ -1,0 +1,19 @@
+/*
+ * SgxVfsHandler.h
+ *
+ *  Created on: 04.03.2020
+ *      Author: sgx
+ */
+
+#ifndef ENCLAVE_SQLITE_ENCLAVE_SGXVFSHANDLER_H_
+#define ENCLAVE_SQLITE_ENCLAVE_SGXVFSHANDLER_H_
+
+class SgxVfsHandler {
+public:
+	SgxVfsHandler();
+	virtual ~SgxVfsHandler();
+
+	getSgxVfsName();
+};
+
+#endif /* ENCLAVE_SQLITE_ENCLAVE_SGXVFSHANDLER_H_ */

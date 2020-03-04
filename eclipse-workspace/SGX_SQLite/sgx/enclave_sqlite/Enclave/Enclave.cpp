@@ -25,6 +25,8 @@ static int callback(void *NotUsed, int argc, char **argv, char **azColName){
 void ecall_opendb(const char *dbname){
     int rc; // For return status of SQLite
     //rc = sqlite3_open(dbname, &db);
+    ocall_println_string("");
+    ocall_println_string(getSgxVfsName().c_str());
     rc = sqlite3_open_v2(dbname, &db, 0, getSgxVfsName().c_str()); // Opening database
     if (rc) {
         ocall_println_string("SQLite error - can't open database connection: ");

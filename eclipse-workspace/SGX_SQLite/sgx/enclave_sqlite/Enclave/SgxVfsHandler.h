@@ -1,19 +1,18 @@
-#ifndef SGX_VFS_HANDLER
-#define SGX_VFS_HANDLER
-
-#include <string.h>
-using namespace std;
-
 /*
-** Make sure we can call this stuff from C++.
-*/
-#ifdef __cplusplus
-extern "C" {
-#endif
+ * SgxVfsHandler.h
+ *
+ *  Created on: 04.03.2020
+ *      Author: sgx
+ */
+#include <string.h>
 
-string getSgxVfsName();
+#ifndef ENCLAVE_SQLITE_ENCLAVE_SGXVFSHANDLER_H_
+#define ENCLAVE_SQLITE_ENCLAVE_SGXVFSHANDLER_H_
 
-#ifdef __cplusplus
-}
-#endif /* __cplusplus */
-#endif
+
+
+std::string getSgxVfsName(); // @suppress("Type cannot be resolved")
+
+
+
+#endif /* ENCLAVE_SQLITE_ENCLAVE_SGXVFSHANDLER_H_ */
