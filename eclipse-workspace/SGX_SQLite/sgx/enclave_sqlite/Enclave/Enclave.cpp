@@ -25,16 +25,16 @@ static int callback(void *NotUsed, int argc, char **argv, char **azColName){
 void ecall_opendb(const char *dbname){
     int rc; // For return status of SQLite
     //rc = sqlite3_open(dbname, &db);
-    ocall_println_string("");
-    ocall_println_string(getSgxVfsName().c_str());
+    //ocall_println_string("");
+    //ocall_println_string(getSgxVfsName().c_str());
     rc = sqlite3_open_v2(dbname, &db, 0x00000002, getSgxVfsName().c_str()); // Opening database
     if (rc) {
-        ocall_println_string("SQLite error - can't open database connection: ");
-        ocall_println_string(sqlite3_errmsg(db));
+        //ocall_println_string("SQLite error - can't open database connection: ");
+        //ocall_println_string(sqlite3_errmsg(db));
         return;
     }
-    ocall_print_string("Enclave: Created database connection to ");
-    ocall_println_string(dbname);
+    //ocall_print_string("Enclave: Created database connection to ");
+    //ocall_println_string(dbname);
 }
 
 SGX_FILE* ecall_fopen(const char* filename, const char* mode)
@@ -98,6 +98,6 @@ void ecall_execute_sql(const char *sql){
 }
 
 void ecall_closedb(){
-    sqlite3_close(db);
-    ocall_println_string("Enclave: Closed database connection");
+    sqlite3_close_v2(db);
+    //ocall_println_string("Enclave: Closed database connection");
 }

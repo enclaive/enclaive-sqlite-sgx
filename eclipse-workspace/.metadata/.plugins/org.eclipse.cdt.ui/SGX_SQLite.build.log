@@ -1,9 +1,51 @@
-01:44:45 **** Incremental Build of configuration Intel(R) SGX Simulation Debug for project SGX_SQLite ****
+23:04:32 **** Incremental Build of configuration Intel(R) SGX Simulation Debug for project SGX_SQLite ****
 make SGX_DEBUG=1 SGX_MODE=SIM -f sgx/Makefile 
 make -C ./sgx/enclave_sqlite  -f sgx_t_u.mk all;
-make[1]: Verzeichnis „/home/sgx/M-AI-CryptographicProtocols/eclipse-workspace/SGX_SQLite/sgx/enclave_sqlite“ wird betreten
+make[1]: Entering directory '/home/sgx/M-AI-CryptographicProtocols/eclipse-workspace/SGX_SQLite/sgx/enclave_sqlite'
+g++ -m64 -O0 -g  -fPIC -Wno-attributes -IApp -I/opt/intel/sgxsdk/include -DDEBUG -UNDEBUG -UEDEBUG -std=c++11 -c App/App.cpp -o App/App.o
+In file included from App/../App/Enclave_u.h:11:0,
+                 from App/App.cpp:5:
+/opt/intel/sgxsdk/include/sgx_tprotected_fs.h:57:0: warning: "FILENAME_MAX" redefined
+ #define FILENAME_MAX  260
+ 
+In file included from /usr/include/stdio.h:131:0,
+                 from /usr/include/c++/7/cstdio:42,
+                 from /usr/include/c++/7/ext/string_conversions.h:43,
+                 from /usr/include/c++/7/bits/basic_string.h:6361,
+                 from /usr/include/c++/7/string:52,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from App/App.cpp:1:
+/usr/include/x86_64-linux-gnu/bits/stdio_lim.h:27:0: note: this is the location of the previous definition
+ #define FILENAME_MAX 4096
+ 
+In file included from App/../App/Enclave_u.h:11:0,
+                 from App/App.cpp:5:
+/opt/intel/sgxsdk/include/sgx_tprotected_fs.h:58:0: warning: "FOPEN_MAX" redefined
+ #define FOPEN_MAX     20
+ 
+In file included from /usr/include/stdio.h:131:0,
+                 from /usr/include/c++/7/cstdio:42,
+                 from /usr/include/c++/7/ext/string_conversions.h:43,
+                 from /usr/include/c++/7/bits/basic_string.h:6361,
+                 from /usr/include/c++/7/string:52,
+                 from /usr/include/c++/7/bits/locale_classes.h:40,
+                 from /usr/include/c++/7/bits/ios_base.h:41,
+                 from /usr/include/c++/7/ios:42,
+                 from /usr/include/c++/7/ostream:38,
+                 from /usr/include/c++/7/iostream:39,
+                 from App/App.cpp:1:
+/usr/include/x86_64-linux-gnu/bits/stdio_lim.h:37:0: note: this is the location of the previous definition
+ #define FOPEN_MAX 16
+ 
+CXX  <=  App/App.cpp
+g++ App/Enclave_u.o App/ocalls.o App/App.o -o app -m64 -O0 -g  -L/opt/intel/sgxsdk/lib64 -lsgx_urts_sim -lpthread -lsgx_uprotected_fs -lsgx_uae_service_sim
+LINK =>  app
 The project has been built in debug simulation mode.
-make[1]: Verzeichnis „/home/sgx/M-AI-CryptographicProtocols/eclipse-workspace/SGX_SQLite/sgx/enclave_sqlite“ wird verlassen
+make[1]: Leaving directory '/home/sgx/M-AI-CryptographicProtocols/eclipse-workspace/SGX_SQLite/sgx/enclave_sqlite'
 
-01:44:45 Build Finished. 0 errors, 0 warnings. (took 80ms)
+23:04:33 Build Finished. 0 errors, 2 warnings. (took 422ms)
 

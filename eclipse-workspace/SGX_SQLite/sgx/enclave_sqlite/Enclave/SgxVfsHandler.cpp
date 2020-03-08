@@ -65,21 +65,48 @@ std::string getSgxVfsName() {
             methods.xSectorSize = &xSectorSize;
             methods.xDeviceCharacteristics = &xDeviceCharacteristics;
             fileBase->pMethods = &methods;
+
+
+            static_cast<File*>(fileBase)->sgxData = sgx_fopen_auto_key("changeme.db","rb+");
+
+
+            //ocall_println_string("OPEN");
             return SQLITE_OK;
         }
 
         static int xClose(sqlite3_file* fileBase) {
+        	int32_t result = 0;
+        	int32_t error =0;
+        	result = sgx_fclose(static_cast<File*>(fileBase)->sgxData);
+        	error = sgx_ferror(static_cast<File*>(fileBase)->sgxData);
+        	//ocall_println_string("CLOSE");
             return SQLITE_OK;
         }
 
         static int xRead(sqlite3_file* fileBase, void* buffer, int quantity, sqlite3_int64 offset) {
+        	int32_t error;
+        	int result = 0;
+
+        	result = sgx_fseek(static_cast<File*>(fileBase)->sgxData, offset, SEEK_SET);
+
+        	error = sgx_ferror(static_cast<File*>(fileBase)->sgxData);
+
+        	//buffer = (char*)malloc(sizeof(char)*quantity);
+        	result = sgx_fread(buffer, sizeof(char), quantity, static_cast<File*>(fileBase)->sgxData);
+
+        	error = sgx_ferror(static_cast<File*>(fileBase)->sgxData);
+
+        	//ocall_println_string("READ");
             return SQLITE_OK;
         }
 
         static int xWrite(sqlite3_file* fileBase, const void* buffer, int quantity, sqlite3_int64 offset) {
+        	int32_t result = 0;
 
+        	result = sgx_fseek(static_cast<File*>(fileBase)->sgxData, offset, SEEK_SET);
+        	result = sgx_fwrite(buffer, sizeof(char), quantity, static_cast<File*>(fileBase)->sgxData);
 
-
+        	//ocall_println_string("WRITE");
         	return SQLITE_OK;
         }
 
@@ -92,23 +119,62 @@ std::string getSgxVfsName() {
         }
 
         static int xFileSize(sqlite3_file* fileBase, sqlite3_int64* outputSize) {
+        	uint64_t file_size = 0;
+        	sgx_fseek(static_cast<File*>(fileBase)->sgxData, 0, SEEK_END);
+        	file_size = sgx_ftell(static_cast<File*>(fileBase)->sgxData);
+
+        	*outputSize = file_size;
+        	//ocall_println_string("FILESIZE");
         	return SQLITE_OK;
         }
 
         static int xLock(sqlite3_file* fileBase, int level) {
+        	//ocall_println_string("LOCK");
+        	static_cast<File*>(fileBase)->lockLevel = level;
         	return SQLITE_OK;
         }
 
         static int xUnlock(sqlite3_file* fileBase, int level) {
+        	//ocall_println_string("UNLOCK");
+        	static_cast<File*>(fileBase)->lockLevel = level;
         	return SQLITE_OK;
         }
 
         static int xCheckReservedLock(sqlite3_file* fileBase, int* pResOut) {
+        	File* fileData = static_cast<File*>(fileBase);
+        	*pResOut = (fileData->lockLevel >= 1);
         	return SQLITE_OK;
         }
 
         static int xFileControl(sqlite3_file* fileBase, int op, void* pArg) {
-        	return SQLITE_OK;
+
+        	 // this function is bit weird because it's supposed to handle generic operations
+			// the 'op' parameter is the operation code, and 'pArg' points to the arguments of the operation
+
+			auto fileData = static_cast<File*>(fileBase);
+
+			switch(op) {
+				case SQLITE_FCNTL_LOCKSTATE:
+					// outputs the current lock level of the file in reinterpret_cast<int*>(pArg)
+					*reinterpret_cast<int*>(pArg) = fileData->lockLevel;
+					break;
+
+				case SQLITE_FCNTL_SIZE_HINT:
+					// gives a hint about the size of the final file in reinterpret_cast<int*>(pArg)
+					break;
+
+				case SQLITE_FCNTL_CHUNK_SIZE:
+					// gives a hint about the size of blocks of data that SQLite will write at once
+					break;
+
+				// some operations are not documented (and not used in practice),
+				//   so I'll leave them alone
+				case SQLITE_GET_LOCKPROXYFILE:      return SQLITE_ERROR;
+				case SQLITE_SET_LOCKPROXYFILE:      return SQLITE_ERROR;
+				case SQLITE_LAST_ERRNO:             return SQLITE_ERROR;
+			}
+
+			return SQLITE_OK;
         }
 
         static int xSectorSize(sqlite3_file*) {
@@ -138,10 +204,12 @@ std::string getSgxVfsName() {
         }
 
         static int xRandomness(sqlite3_vfs*, int nByte, char* zOut) {
+        	ocall_println_string("xRandomness");
             return SQLITE_OK;
         }
 
         static int xSleep(sqlite3_vfs*, int microseconds) {
+        	ocall_println_string("xSleep");
             return SQLITE_OK;
         }
 
