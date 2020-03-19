@@ -5838,7 +5838,7 @@ static const char sqlite3StrBINARY[] = "BINARY";
 # 17479 "Enclave/sqlite3.c"
 static const char * const azCompileOpt[] = {
 # 17505 "Enclave/sqlite3.c"
-  "COMPILER=gcc-" "7.4.0",
+  "COMPILER=gcc-" "7.5.0",
 # 17520 "Enclave/sqlite3.c"
   "DEFAULT_SYNCHRONOUS=" "2",
 
