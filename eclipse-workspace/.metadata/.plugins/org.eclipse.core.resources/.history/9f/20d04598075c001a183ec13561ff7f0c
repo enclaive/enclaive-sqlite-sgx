@@ -1,3 +1,0 @@
-#include <string.h>
-
-std::string getSgxVfsName()

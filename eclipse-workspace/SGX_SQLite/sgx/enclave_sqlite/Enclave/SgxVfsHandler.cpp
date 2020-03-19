@@ -48,7 +48,6 @@ std::string getSgxVfsName() {
 		static int xOpen(sqlite3_vfs*, const char *zName,
 				sqlite3_file *fileBase, int flags, int *pOutFlags) {
 
-			// filling a structure with a list of methods that will be used by SQLite3 for this particular file
 			static sqlite3_io_methods methods;
 			methods.iVersion = 1;
 			methods.xClose = &xClose;
