@@ -15,6 +15,11 @@
 #include "sgx_tprotected_fs.h"
 
 
+
+#include "sgx_urts.h"
+
+
+
 std::string getSgxVfsName() {
 	// a mutex protects the body of this function because we don't want to register the VFS twice
 	static std::mutex mutex;
@@ -64,12 +69,51 @@ std::string getSgxVfsName() {
 			methods.xDeviceCharacteristics = &xDeviceCharacteristics;
 			fileBase->pMethods = &methods;
 
-			static_cast<File*>(fileBase)->sgxData = sgx_fopen_auto_key("changeme.db", "rb+");
+			ocall_println_string("Open");
+			if (static_cast<File*>(fileBase)->sgxData == 0x0) {
+				ocall_println_string("setSgxData");
+				static_cast<File*>(fileBase)->sgxData = sgx_fopen_auto_key(zName, "rb+");
+			}
 
-			return SQLITE_OK;
+/*
+
+            // SQLite allocated a buffer large enough to use it as a "File" object (see above)
+            auto fileData = static_cast<File*>(fileBase);
+            fileData->lockLevel = 0;
+
+            // if the name of the file doesn't contain a lexical_cast'ed pointer, then this is not our main DB file
+            //  (note: the flags can also be used to determine this)
+            if (zName == nullptr || strlen(zName) != sizeof(void*) * 2) {
+
+                assert(flags | SQLITE_OPEN_CREATE);
+                // if this is not our main DB file, we create a temporary stringstream that will be deleted when the file is closed
+                // this behavior is different than expected from a file system (where file are permanent)
+                //   but SQLite seems to accept it
+                new (&fileData->stream) std::shared_ptr<std::iostream>(std::make_shared<std::stringstream>(std::ios_base::in | std::ios_base::out | std::ios_base::binary));
+
+            } else {
+                // decoding our pointer, ie. un-lexical_cast'ing it
+                std::stringstream filenameStream(zName);
+                void* sharedPtrAddress = nullptr;
+                filenameStream >> sharedPtrAddress;
+                // our pointer points to a shared_ptr<std::iostream>, we make a copy of it
+                new (&fileData->stream) std::shared_ptr<std::iostream>(*static_cast<std::shared_ptr<std::iostream>*>(sharedPtrAddress));
+            }
+
+            assert(fileData->stream->good());
+
+            // I don't really know what to output as flags
+            // the "winOpen" implementation only sets either "readwrite" or "readonly"
+            if (pOutFlags != nullptr)
+                *pOutFlags = SQLITE_OPEN_READWRITE;
+
+            */
+
+            return SQLITE_OK;
 		}
 
 		static int xClose(sqlite3_file *fileBase) {
+			ocall_println_string("Close");
 			int32_t result = 0;
 			int32_t error = 0;
 			result = sgx_fclose(static_cast<File*>(fileBase)->sgxData);
@@ -114,21 +158,20 @@ std::string getSgxVfsName() {
 					offset,
 					SEEK_SET);
 
-//			if (resultSeek == -1) {
-//				return SQLITE_IOERR_SEEK;
-//			}
+			if (resultSeek == -1) {
+				//return SQLITE_IOERR_SEEK;
+			}
 
 			resultWrite = sgx_fwrite(buffer, sizeof(char), quantity,
 					static_cast<File*>(fileBase)->sgxData);
-//
-//			if (resultWrite == 0) {
-//				return SQLITE_IOERR_WRITE;
-//			}
 
-			return SQLITE_OK;
-		}
+			if (resultWrite == 0) {
+				//return SQLITE_IOERR_WRITE;
+				ocall_println_string("SQLITE_IOERR_WRITE");
+			} else {
+				ocall_println_string("SQLITE_OK");
+			}
 
-		static int xTruncate(sqlite3_file *fileBase, sqlite3_int64 size) {
 			return SQLITE_OK;
 		}
 
@@ -222,17 +265,8 @@ std::string getSgxVfsName() {
 				char *zOut) {
 			// this function turns a relative path into an absolute path
 			// since our file names are just lexical_cast'ed pointers, we just strcpy
-			// strcpy_s(zOut, nOut, zName);
-			return SQLITE_OK;
-		}
+			std::strncpy(zOut, zName, nOut);
 
-		static int xRandomness(sqlite3_vfs*, int nByte, char *zOut) {
-			ocall_println_string("xRandomness");
-			return SQLITE_OK;
-		}
-
-		static int xSleep(sqlite3_vfs*, int microseconds) {
-			ocall_println_string("xSleep");
 			return SQLITE_OK;
 		}
 
@@ -242,7 +276,9 @@ std::string getSgxVfsName() {
 			// I picked this constant from sqlite3.c which will make our life easier
 			static const double unixEpoch = 2440587.5;
 
-			//*output = unixEpoch + double(sgx_get_trusted_time(nullptr)) / (60.*60.*24.);
+			ocall_println_string("xCurrentTimeInt64");
+
+			*output = unixEpoch + 1 / (60.*60.*24.);
 			return SQLITE_OK;
 		}
 
@@ -254,7 +290,38 @@ std::string getSgxVfsName() {
 			static const sqlite3_int64 unixEpoch = 24405875
 					* sqlite3_int64(60 * 60 * 24 * 100);
 
-			//*output = unixEpoch + sgx_get_trusted_time() * 1000;
+			ocall_println_string("xCurrentTimeInt64");
+
+			*output = unixEpoch + 1 * 1000;
+			return SQLITE_OK;
+		}
+
+		static int xRandomness(sqlite3_vfs*, int nByte, char *zOut) {
+			// this function generates a random serie of characters to write in 'zOut'
+			// we use C++0x's <random> features
+
+			static std::mt19937 randomGenerator;
+			/*static std::uniform_int<char> randomDistributor;
+
+			for (auto i = 0; i < nByte; ++i)
+				zOut[i] = randomDistributor(randomGenerator);
+			*/
+
+			ocall_println_string("xRandomness");
+			return SQLITE_OK;
+		}
+
+		static int xTruncate(sqlite3_file *fileBase, sqlite3_int64 size) {
+			ocall_println_string("xTruncate");
+			// it is not possible to truncate a stream
+			// it makes sense to truncate a file or a buffer, but not a generic stream
+			// however it is possible to implement the xTruncate function as a no-op
+			return SQLITE_OK;
+		}
+
+		static int xSleep(sqlite3_vfs*, int microseconds) {
+			ocall_println_string("xSleep");
+			//std::this_thread::sleep(std::chrono::microseconds(microseconds));
 			return SQLITE_OK;
 		}
 
