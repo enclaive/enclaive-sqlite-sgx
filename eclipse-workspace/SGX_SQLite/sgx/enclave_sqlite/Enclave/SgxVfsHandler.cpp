@@ -110,7 +110,7 @@ std::string getSgxVfsName() {
 
 			//SQLite set the Flag for the WAL_FILE
 			if (flags == (SQLITE_OPEN_READWRITE | SQLITE_OPEN_WAL | SQLITE_OPEN_CREATE)) {
-				if (debugFlag) ocall_println_string("JournalDB");
+				if (debugFlag) ocall_println_string("WalDB");
 				fileData->sgxData = sgx_fopen_auto_key(zName, "wb+");
 			}
 
