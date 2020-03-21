@@ -30,6 +30,7 @@ void ecall_opendb(const char *dbname) {
 	rc = sqlite3_exec(db, "PRAGMA main.locking_mode = EXCLUSIVE", callback, 0, &zErrMsg);
 	rc = sqlite3_exec(db, "PRAGMA main.mmap_size = 2000", callback, 0, &zErrMsg);
 	rc = sqlite3_exec(db, "PRAGMA temp_store = MEMORY", callback, 0, &zErrMsg);
+	rc = sqlite3_exec(db, "PRAGMA page_size=512; VACUUM;", callback, 0, &zErrMsg);
 
 	if (rc) {
 		ocall_println_string("SQLite error - can't open database connection: ");

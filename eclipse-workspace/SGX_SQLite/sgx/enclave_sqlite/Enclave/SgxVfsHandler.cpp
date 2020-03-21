@@ -18,7 +18,7 @@
 
 #include "sgx_urts.h"
 
-bool debugFlag = true;
+bool debugFlag = false;
 
 std::string getSgxVfsName() {
 	// a mutex protects the body of this function because we don't want to register the VFS twice
@@ -88,11 +88,18 @@ std::string getSgxVfsName() {
 			auto fileData = static_cast<File*>(fileBase);
 
 
-
 			//SQLite set the Flag for the Main_DB
 			if (flags == (SQLITE_OPEN_READWRITE | SQLITE_OPEN_MAIN_DB )) {
 				if (debugFlag) ocall_println_string("MainDB");
 				fileData->sgxData = sgx_fopen_auto_key(zName, "rb+");
+				/*
+				//exist the Database?
+				if (sgx_fopen_auto_key(zName, "rb+") == 0x0) {
+					fileData->sgxData = sgx_fopen_auto_key(zName, "wb+");
+				} else {
+					fileData->sgxData = sgx_fopen_auto_key(zName, "rb+");
+				}
+				*/
 			}
 
 			//SQLite set the Flag for the Main_Journal
@@ -187,8 +194,6 @@ std::string getSgxVfsName() {
 
 			auto fileData = static_cast<File*>(fileBase);
 
-			xSync(fileBase, 1);
-
 			if(fileData->sgxData != 0x0) {
 				if (debugFlag) ocall_println_string("SgxData Pointer ok");
 			}
@@ -207,6 +212,8 @@ std::string getSgxVfsName() {
 			if (resultWrite == 0) {
 				return SQLITE_IOERR_WRITE;
 			}
+
+			xSync(fileBase, 1);
 
 			return SQLITE_OK;
 		}
@@ -289,10 +296,6 @@ std::string getSgxVfsName() {
 					| SQLITE_IOCAP_SEQUENTIAL;
 		}
 
-		static int xDelete(sqlite3_vfs*, const char *zName, int syncDir) {
-			return SQLITE_OK;
-		}
-
 		static int xAccess(sqlite3_vfs*, const char *zName, int flags,
 				int *pResOut) {
 			*pResOut = (strlen(zName) == sizeof(void*) * 2);
@@ -346,6 +349,16 @@ std::string getSgxVfsName() {
 			*/
 
 			if (debugFlag) ocall_println_string("xRandomness");
+			return SQLITE_OK;
+		}
+
+		static int xDelete(sqlite3_vfs*, const char *zName, int syncDir) {
+			ocall_println_string("xDelete");
+			int32_t resultRemove = 0;
+			resultRemove = sgx_remove(zName);
+			if (resultRemove == 1) {
+				return SQLITE_IOERR_DELETE;
+			}
 			return SQLITE_OK;
 		}
 
