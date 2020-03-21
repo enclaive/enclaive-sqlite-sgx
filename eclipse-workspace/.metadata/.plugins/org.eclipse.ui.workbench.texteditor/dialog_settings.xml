@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="ocall"/>
+		<item key="selection" value="SgxData"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="sgxData"/>
+			<item value="&lt;const char*&gt;"/>
+			<item value="open_v2"/>
+			<item value="openDatabase"/>
+			<item value="test.db"/>
+			<item value="test"/>
+			<item value="xWrite"/>
 			<item value="ocall"/>
 			<item value="oca"/>
 			<item value="&#x09;rc = sqlite3_exec(db, &quot;PRAGMA shrink_memory&quot;, callback, 0, &amp;zErrMsg);"/>
@@ -16,8 +23,6 @@
 			<item value="Enclave_Link_Flags"/>
 			<item value="Enclave_Cpp_Objects"/>
 			<item value="getSgxVfsName"/>
-			<item value=".o"/>
-			<item value="Enclave.o"/>
 		</list>
 		<list key="replacehistory">
 			<item value=""/>

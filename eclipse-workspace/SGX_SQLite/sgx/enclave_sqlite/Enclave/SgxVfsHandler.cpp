@@ -357,7 +357,7 @@ std::string getSgxVfsName() {
 			int32_t resultRemove = 0;
 			resultRemove = sgx_remove(zName);
 			if (resultRemove == 1) {
-				return SQLITE_IOERR_DELETE;
+				//return SQLITE_IOERR_DELETE;
 			}
 			return SQLITE_OK;
 		}
