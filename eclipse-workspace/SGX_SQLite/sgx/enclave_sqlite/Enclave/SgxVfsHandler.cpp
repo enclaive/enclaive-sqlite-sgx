@@ -18,12 +18,14 @@
 
 #include "sgx_urts.h"
 
-
+bool debugFlag = true;
 
 std::string getSgxVfsName() {
 	// a mutex protects the body of this function because we don't want to register the VFS twice
 	static std::mutex mutex;
 	std::lock_guard<std::mutex> lock(mutex);
+
+
 
 	// check if the VFS is already registered, in this case we directly return
 	static const char *vfsName = "sgx_vfs_handler";
@@ -69,10 +71,39 @@ std::string getSgxVfsName() {
 			methods.xDeviceCharacteristics = &xDeviceCharacteristics;
 			fileBase->pMethods = &methods;
 
-			ocall_println_string("Open");
-			if (static_cast<File*>(fileBase)->sgxData == 0x0) {
-				ocall_println_string("setSgxData");
-				static_cast<File*>(fileBase)->sgxData = sgx_fopen_auto_key(zName, "rb+");
+			/*
+			int tmpInt2 = SQLITE_OPEN_READWRITE;
+			int tmpInt4 = SQLITE_OPEN_CREATE;
+			int tmpInt256 = SQLITE_OPEN_MAIN_DB;
+			int tmpint2048 = SQLITE_OPEN_MAIN_JOURNAL;
+			int tmpInt4096 = SQLITE_OPEN_TEMP_JOURNAL;
+			int tmpInt52488 = SQLITE_OPEN_WAL;
+
+			int tmpInt258 = SQLITE_OPEN_READWRITE | SQLITE_OPEN_MAIN_DB;
+			int tmpInt2054 = SQLITE_OPEN_READWRITE | SQLITE_OPEN_MAIN_JOURNAL | SQLITE_OPEN_CREATE;
+			*/
+
+			if (debugFlag) ocall_println_string("Open");
+
+			auto fileData = static_cast<File*>(fileBase);
+
+
+
+			//SQLite set the Flag for the Main_DB
+			if (flags == (SQLITE_OPEN_READWRITE | SQLITE_OPEN_MAIN_DB )) {
+				if (debugFlag) ocall_println_string("MainDB");
+				fileData->sgxData = sgx_fopen_auto_key(zName, "rb+");
+			}
+
+			//SQLite set the Flag for the Main_Journal
+			if (flags == (SQLITE_OPEN_READWRITE | SQLITE_OPEN_MAIN_JOURNAL | SQLITE_OPEN_CREATE)) {
+				if (debugFlag) ocall_println_string("JournalDB");
+				fileData->sgxData = sgx_fopen_auto_key(zName, "wb+");
+			}
+
+			if (fileData->sgxData == 0x0) {
+				if (debugFlag) ocall_println_string("DataPointer not Set");
+
 			}
 
 /*
@@ -113,7 +144,7 @@ std::string getSgxVfsName() {
 		}
 
 		static int xClose(sqlite3_file *fileBase) {
-			ocall_println_string("Close");
+			if (debugFlag) ocall_println_string("Close");
 			int32_t result = 0;
 			int32_t error = 0;
 			result = sgx_fclose(static_cast<File*>(fileBase)->sgxData);
@@ -133,18 +164,18 @@ std::string getSgxVfsName() {
 			resultSeek = sgx_fseek(static_cast<File*>(fileBase)->sgxData,
 					offset, SEEK_SET);
 			error = sgx_ferror(static_cast<File*>(fileBase)->sgxData);
-//
-//			if (resultSeek == -1) {
-//				return SQLITE_IOERR_SEEK;
-//			}
+
+			if (resultSeek == -1) {
+				return SQLITE_IOERR_SEEK;
+			}
 
 			resultRead = sgx_fread(buffer, sizeof(char), quantity,
 					static_cast<File*>(fileBase)->sgxData);
 			error = sgx_ferror(static_cast<File*>(fileBase)->sgxData);
 
-//			if (resultRead == 0 && false) {
-//				return SQLITE_IOERR_READ;
-//			}
+			if (resultRead == 0 && false) {
+				return SQLITE_IOERR_READ;
+			}
 
 			return SQLITE_OK;
 		}
@@ -154,22 +185,27 @@ std::string getSgxVfsName() {
 			int32_t resultSeek = 0;
 			int32_t resultWrite = 0;
 
-			resultSeek = sgx_fseek(static_cast<File*>(fileBase)->sgxData,
+			auto fileData = static_cast<File*>(fileBase);
+
+			xSync(fileBase, 1);
+
+			if(fileData->sgxData != 0x0) {
+				if (debugFlag) ocall_println_string("SgxData Pointer ok");
+			}
+
+			resultSeek = sgx_fseek(fileData->sgxData,
 					offset,
 					SEEK_SET);
 
 			if (resultSeek == -1) {
-				//return SQLITE_IOERR_SEEK;
+				return SQLITE_IOERR_SEEK;
 			}
 
 			resultWrite = sgx_fwrite(buffer, sizeof(char), quantity,
-					static_cast<File*>(fileBase)->sgxData);
+					fileData->sgxData);
 
 			if (resultWrite == 0) {
-				//return SQLITE_IOERR_WRITE;
-				ocall_println_string("SQLITE_IOERR_WRITE");
-			} else {
-				ocall_println_string("SQLITE_OK");
+				return SQLITE_IOERR_WRITE;
 			}
 
 			return SQLITE_OK;
@@ -223,10 +259,12 @@ std::string getSgxVfsName() {
 
 			case SQLITE_FCNTL_SIZE_HINT:
 				// gives a hint about the size of the final file in reinterpret_cast<int*>(pArg)
+				if (debugFlag) ocall_println_string("xFileControl : SQLITE_FCNTL_SIZE_HINT");
 				break;
 
 			case SQLITE_FCNTL_CHUNK_SIZE:
 				// gives a hint about the size of blocks of data that SQLite will write at once
+				if (debugFlag) ocall_println_string("xFileControl : SQLITE_FCNTL_CHUNK_SIZE");
 				break;
 
 				// some operations are not documented (and not used in practice),
@@ -276,7 +314,7 @@ std::string getSgxVfsName() {
 			// I picked this constant from sqlite3.c which will make our life easier
 			static const double unixEpoch = 2440587.5;
 
-			ocall_println_string("xCurrentTimeInt64");
+			if (debugFlag) ocall_println_string("xCurrentTimeInt64");
 
 			*output = unixEpoch + 1 / (60.*60.*24.);
 			return SQLITE_OK;
@@ -290,7 +328,7 @@ std::string getSgxVfsName() {
 			static const sqlite3_int64 unixEpoch = 24405875
 					* sqlite3_int64(60 * 60 * 24 * 100);
 
-			ocall_println_string("xCurrentTimeInt64");
+			if (debugFlag) ocall_println_string("xCurrentTimeInt64");
 
 			*output = unixEpoch + 1 * 1000;
 			return SQLITE_OK;
@@ -307,7 +345,7 @@ std::string getSgxVfsName() {
 				zOut[i] = randomDistributor(randomGenerator);
 			*/
 
-			ocall_println_string("xRandomness");
+			if (debugFlag) ocall_println_string("xRandomness");
 			return SQLITE_OK;
 		}
 
@@ -320,7 +358,7 @@ std::string getSgxVfsName() {
 		}
 
 		static int xSleep(sqlite3_vfs*, int microseconds) {
-			ocall_println_string("xSleep");
+			if (debugFlag) ocall_println_string("xSleep");
 			//std::this_thread::sleep(std::chrono::microseconds(microseconds));
 			return SQLITE_OK;
 		}

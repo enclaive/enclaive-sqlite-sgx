@@ -1,4 +1,4 @@
-23:09:25 **** Build of configuration Intel(R) SGX Simulation Debug for project SGX_SQLite ****
+02:28:34 **** Build of configuration Intel(R) SGX Simulation Debug for project SGX_SQLite ****
 make SGX_DEBUG=1 SGX_MODE=SIM -f sgx/Makefile 
 make -C ./sgx/enclave_sqlite  -f sgx_t_u.mk all;
 make[1]: Verzeichnis „/home/sgx/M-AI-CryptographicProtocols/eclipse-workspace/SGX_SQLite/sgx/enclave_sqlite“ wird betreten
@@ -63,7 +63,7 @@ In file included from /opt/intel/sgxsdk/include/sgx_thread.h:36:0,
                  from /opt/intel/sgxsdk/include/libcxx/mutex:190,
                  from Enclave/SgxVfsHandler.cpp:8:
 Enclave/SgxVfsHandler.cpp: In function ‘std::__1::string getSgxVfsName()’:
-Enclave/SgxVfsHandler.cpp:43:25: warning: offsetof within non-standard-layout type ‘getSgxVfsName()::File’ is undefined [-Winvalid-offsetof]
+Enclave/SgxVfsHandler.cpp:45:25: warning: offsetof within non-standard-layout type ‘getSgxVfsName()::File’ is undefined [-Winvalid-offsetof]
   static_assert(offsetof(File, pMethods) == 0, "Wrong data alignment in custom SQLite3 VFS, lots of weird errors will happen during runtime");
 /opt/intel/sgxsdk/include/tlibc/stddef.h:67:54: note: in definition of macro ‘offsetof’
  #define offsetof(type, member)   __builtin_offsetof (type, member)
@@ -119,7 +119,101 @@ Succeed.
 SIGN =>  enclave.signed.so
 The project has been built in debug simulation mode.
 make[1]: Verzeichnis „/home/sgx/M-AI-CryptographicProtocols/eclipse-workspace/SGX_SQLite/sgx/enclave_sqlite“ wird verlassen
-23:09:31 **** Incremental Build of configuration Intel(R) SGX Simulation Debug for project SGX_SQLite ****
+02:28:58 **** Incremental Build of configuration Intel(R) SGX Simulation Debug for project SGX_SQLite ****
+make SGX_DEBUG=1 SGX_MODE=SIM -f sgx/Makefile 
+make -C ./sgx/enclave_sqlite  -f sgx_t_u.mk all;
+make[1]: Verzeichnis „/home/sgx/M-AI-CryptographicProtocols/eclipse-workspace/SGX_SQLite/sgx/enclave_sqlite“ wird betreten
+The project has been built in debug simulation mode.
+make[1]: Verzeichnis „/home/sgx/M-AI-CryptographicProtocols/eclipse-workspace/SGX_SQLite/sgx/enclave_sqlite“ wird verlassen
+02:30:15 **** Incremental Build of configuration Intel(R) SGX Simulation Debug for project SGX_SQLite ****
+make SGX_DEBUG=1 SGX_MODE=SIM -f sgx/Makefile 
+make -C ./sgx/enclave_sqlite  -f sgx_t_u.mk all;
+make[1]: Verzeichnis „/home/sgx/M-AI-CryptographicProtocols/eclipse-workspace/SGX_SQLite/sgx/enclave_sqlite“ wird betreten
+g++ -m64 -O0 -g  -nostdinc -fvisibility=hidden -fpie -ffunction-sections -fdata-sections -fstack-protector-strong -IEnclave -I/opt/intel/sgxsdk/include -I/opt/intel/sgxsdk/include/tlibc -I/opt/intel/sgxsdk/include/libcxx -std=c++11 -nostdinc++ -c Enclave/SgxVfsHandler.cpp -o Enclave/SgxVfsHandler.o
+In file included from /opt/intel/sgxsdk/include/sgx_thread.h:36:0,
+                 from /opt/intel/sgxsdk/include/libcxx/support/sgx/sgx_mutex:180,
+                 from /opt/intel/sgxsdk/include/libcxx/mutex:190,
+                 from Enclave/SgxVfsHandler.cpp:8:
+Enclave/SgxVfsHandler.cpp: In function ‘std::__1::string getSgxVfsName()’:
+Enclave/SgxVfsHandler.cpp:45:25: warning: offsetof within non-standard-layout type ‘getSgxVfsName()::File’ is undefined [-Winvalid-offsetof]
+  static_assert(offsetof(File, pMethods) == 0, "Wrong data alignment in custom SQLite3 VFS, lots of weird errors will happen during runtime");
+/opt/intel/sgxsdk/include/tlibc/stddef.h:67:54: note: in definition of macro ‘offsetof’
+ #define offsetof(type, member)   __builtin_offsetof (type, member)
+                                                      ^~~~
+CXX  <=  Enclave/SgxVfsHandler.cpp
+g++ Enclave/Enclave_t.o Enclave/Enclave.o Enclave/SgxVfsHandler.o Enclave/sqlite3.o Enclave/ocall_interface.o -o enclave.so -m64 -O0 -g  -Wl,--no-undefined -nostdlib -nodefaultlibs -nostartfiles -L/opt/intel/sgxsdk/lib64 -Wl,--whole-archive -lsgx_trts_sim -Wl,--no-whole-archive -Wl,--start-group -lsgx_tstdc -lsgx_tprotected_fs -lsgx_tcxx -lsgx_tservice -lsgx_tcrypto -lsgx_tservice_sim -Wl,--end-group -Wl,-Bstatic -Wl,-Bsymbolic -Wl,--no-undefined -Wl,-pie,-eenclave_entry -Wl,--export-dynamic -Wl,--defsym,__ImageBase=0 -Wl,--gc-sections -Wl,--version-script=Enclave/Enclave.lds
+LINK =>  enclave.so
+/opt/intel/sgxsdk/bin/x64/sgx_sign sign -key Enclave/Enclave_private.pem -enclave enclave.so -out enclave.signed.so -config Enclave/Enclave.config.xml
+tcs_num 10, tcs_max_num 10, tcs_min_pool 1
+The required memory is 5066752B.
+The required memory is 0x4d5000, 4948 KB.
+<EnclaveConfiguration>
+    <ProdID>0</ProdID>
+    <ISVSVN>0</ISVSVN>
+    <StackMaxSize>0x40000</StackMaxSize>
+    <HeapMaxSize>0x100000</HeapMaxSize>
+    <TCSNum>10</TCSNum>
+    <TCSPolicy>1</TCSPolicy>
+Succeed.
+    <!-- Recommend changing 'DisableDebug' to 1 to make the enclave undebuggable for enclave release -->
+    <DisableDebug>0</DisableDebug>
+    <MiscSelect>0</MiscSelect>
+    <MiscMask>0xFFFFFFFF</MiscMask>
+</EnclaveConfiguration>
+SIGN =>  enclave.signed.so
+The project has been built in debug simulation mode.
+make[1]: Verzeichnis „/home/sgx/M-AI-CryptographicProtocols/eclipse-workspace/SGX_SQLite/sgx/enclave_sqlite“ wird verlassen
+02:33:29 **** Incremental Build of configuration Intel(R) SGX Simulation Debug for project SGX_SQLite ****
+make SGX_DEBUG=1 SGX_MODE=SIM -f sgx/Makefile 
+make -C ./sgx/enclave_sqlite  -f sgx_t_u.mk all;
+make[1]: Verzeichnis „/home/sgx/M-AI-CryptographicProtocols/eclipse-workspace/SGX_SQLite/sgx/enclave_sqlite“ wird betreten
+g++ -m64 -O0 -g  -nostdinc -fvisibility=hidden -fpie -ffunction-sections -fdata-sections -fstack-protector-strong -IEnclave -I/opt/intel/sgxsdk/include -I/opt/intel/sgxsdk/include/tlibc -I/opt/intel/sgxsdk/include/libcxx -std=c++11 -nostdinc++ -c Enclave/SgxVfsHandler.cpp -o Enclave/SgxVfsHandler.o
+In file included from /opt/intel/sgxsdk/include/sgx_thread.h:36:0,
+                 from /opt/intel/sgxsdk/include/libcxx/support/sgx/sgx_mutex:180,
+                 from /opt/intel/sgxsdk/include/libcxx/mutex:190,
+                 from Enclave/SgxVfsHandler.cpp:8:
+Enclave/SgxVfsHandler.cpp: In function ‘std::__1::string getSgxVfsName()’:
+Enclave/SgxVfsHandler.cpp:45:25: warning: offsetof within non-standard-layout type ‘getSgxVfsName()::File’ is undefined [-Winvalid-offsetof]
+  static_assert(offsetof(File, pMethods) == 0, "Wrong data alignment in custom SQLite3 VFS, lots of weird errors will happen during runtime");
+/opt/intel/sgxsdk/include/tlibc/stddef.h:67:54: note: in definition of macro ‘offsetof’
+ #define offsetof(type, member)   __builtin_offsetof (type, member)
+                                                      ^~~~
+CXX  <=  Enclave/SgxVfsHandler.cpp
+g++ Enclave/Enclave_t.o Enclave/Enclave.o Enclave/SgxVfsHandler.o Enclave/sqlite3.o Enclave/ocall_interface.o -o enclave.so -m64 -O0 -g  -Wl,--no-undefined -nostdlib -nodefaultlibs -nostartfiles -L/opt/intel/sgxsdk/lib64 -Wl,--whole-archive -lsgx_trts_sim -Wl,--no-whole-archive -Wl,--start-group -lsgx_tstdc -lsgx_tprotected_fs -lsgx_tcxx -lsgx_tservice -lsgx_tcrypto -lsgx_tservice_sim -Wl,--end-group -Wl,-Bstatic -Wl,-Bsymbolic -Wl,--no-undefined -Wl,-pie,-eenclave_entry -Wl,--export-dynamic -Wl,--defsym,__ImageBase=0 -Wl,--gc-sections -Wl,--version-script=Enclave/Enclave.lds
+LINK =>  enclave.so
+/opt/intel/sgxsdk/bin/x64/sgx_sign sign -key Enclave/Enclave_private.pem -enclave enclave.so -out enclave.signed.so -config Enclave/Enclave.config.xml
+tcs_num 10, tcs_max_num 10, tcs_min_pool 1
+The required memory is 5066752B.
+The required memory is 0x4d5000, 4948 KB.
+Succeed.
+<EnclaveConfiguration>
+    <ProdID>0</ProdID>
+    <ISVSVN>0</ISVSVN>
+    <StackMaxSize>0x40000</StackMaxSize>
+    <HeapMaxSize>0x100000</HeapMaxSize>
+    <TCSNum>10</TCSNum>
+    <TCSPolicy>1</TCSPolicy>
+    <!-- Recommend changing 'DisableDebug' to 1 to make the enclave undebuggable for enclave release -->
+    <DisableDebug>0</DisableDebug>
+    <MiscSelect>0</MiscSelect>
+    <MiscMask>0xFFFFFFFF</MiscMask>
+</EnclaveConfiguration>
+SIGN =>  enclave.signed.so
+The project has been built in debug simulation mode.
+make[1]: Verzeichnis „/home/sgx/M-AI-CryptographicProtocols/eclipse-workspace/SGX_SQLite/sgx/enclave_sqlite“ wird verlassen
+02:34:05 **** Incremental Build of configuration Intel(R) SGX Simulation Debug for project SGX_SQLite ****
+make SGX_DEBUG=1 SGX_MODE=SIM -f sgx/Makefile 
+make -C ./sgx/enclave_sqlite  -f sgx_t_u.mk all;
+make[1]: Verzeichnis „/home/sgx/M-AI-CryptographicProtocols/eclipse-workspace/SGX_SQLite/sgx/enclave_sqlite“ wird betreten
+The project has been built in debug simulation mode.
+make[1]: Verzeichnis „/home/sgx/M-AI-CryptographicProtocols/eclipse-workspace/SGX_SQLite/sgx/enclave_sqlite“ wird verlassen
+02:34:20 **** Incremental Build of configuration Intel(R) SGX Simulation Debug for project SGX_SQLite ****
+make SGX_DEBUG=1 SGX_MODE=SIM -f sgx/Makefile 
+make -C ./sgx/enclave_sqlite  -f sgx_t_u.mk all;
+make[1]: Verzeichnis „/home/sgx/M-AI-CryptographicProtocols/eclipse-workspace/SGX_SQLite/sgx/enclave_sqlite“ wird betreten
+The project has been built in debug simulation mode.
+make[1]: Verzeichnis „/home/sgx/M-AI-CryptographicProtocols/eclipse-workspace/SGX_SQLite/sgx/enclave_sqlite“ wird verlassen
+02:35:05 **** Incremental Build of configuration Intel(R) SGX Simulation Debug for project SGX_SQLite ****
 make SGX_DEBUG=1 SGX_MODE=SIM -f sgx/Makefile 
 make -C ./sgx/enclave_sqlite  -f sgx_t_u.mk all;
 make[1]: Verzeichnis „/home/sgx/M-AI-CryptographicProtocols/eclipse-workspace/SGX_SQLite/sgx/enclave_sqlite“ wird betreten

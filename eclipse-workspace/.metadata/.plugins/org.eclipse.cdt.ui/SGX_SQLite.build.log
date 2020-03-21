@@ -1,9 +1,9 @@
-23:09:31 **** Incremental Build of configuration Intel(R) SGX Simulation Debug for project SGX_SQLite ****
+02:35:05 **** Incremental Build of configuration Intel(R) SGX Simulation Debug for project SGX_SQLite ****
 make SGX_DEBUG=1 SGX_MODE=SIM -f sgx/Makefile 
 make -C ./sgx/enclave_sqlite  -f sgx_t_u.mk all;
 make[1]: Verzeichnis „/home/sgx/M-AI-CryptographicProtocols/eclipse-workspace/SGX_SQLite/sgx/enclave_sqlite“ wird betreten
 The project has been built in debug simulation mode.
 make[1]: Verzeichnis „/home/sgx/M-AI-CryptographicProtocols/eclipse-workspace/SGX_SQLite/sgx/enclave_sqlite“ wird verlassen
 
-23:09:31 Build Finished. 0 errors, 0 warnings. (took 68ms)
+02:35:05 Build Finished. 0 errors, 0 warnings. (took 126ms)
 
