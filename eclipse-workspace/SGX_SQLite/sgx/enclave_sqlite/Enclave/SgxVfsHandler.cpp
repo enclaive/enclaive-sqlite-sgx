@@ -39,6 +39,7 @@ std::string getSgxVfsName() {
 	struct File: sqlite3_file {
 		SGX_FILE *sgxData;         // pointer to the source stream
 		int lockLevel; 			   // level of lock by SQLite ; goes from 0 (not locked) to 4 (exclusive lock)
+		const char* fileName;
 	};
 
 	// making sure that the 'sqlite3_file' structure is at offset 0 in the 'File' structure
@@ -86,72 +87,34 @@ std::string getSgxVfsName() {
 			if (debugFlag) ocall_println_string("Open");
 
 			auto fileData = static_cast<File*>(fileBase);
-
+			fileData->fileName = zName;
 
 			//SQLite set the Flag for the Main_DB
 			if (flags == (SQLITE_OPEN_READWRITE | SQLITE_OPEN_MAIN_DB )) {
 				if (debugFlag) ocall_println_string("MainDB");
-				fileData->sgxData = sgx_fopen_auto_key(zName, "rb+");
-				/*
-				//exist the Database?
-				if (sgx_fopen_auto_key(zName, "rb+") == 0x0) {
-					fileData->sgxData = sgx_fopen_auto_key(zName, "wb+");
-				} else {
-					fileData->sgxData = sgx_fopen_auto_key(zName, "rb+");
-				}
-				*/
 			}
 
 			//SQLite set the Flag for the Main_Journal
 			if (flags == (SQLITE_OPEN_READWRITE | SQLITE_OPEN_MAIN_JOURNAL | SQLITE_OPEN_CREATE)) {
 				if (debugFlag) ocall_println_string("JournalDB");
-				fileData->sgxData = sgx_fopen_auto_key(zName, "wb+");
 			}
 
 			//SQLite set the Flag for the WAL_FILE
 			if (flags == (SQLITE_OPEN_READWRITE | SQLITE_OPEN_WAL | SQLITE_OPEN_CREATE)) {
 				if (debugFlag) ocall_println_string("WalDB");
+			}
+
+			fileData->sgxData = sgx_fopen_auto_key(zName, "rb+");
+
+			if (fileData->sgxData == NULL) {
 				fileData->sgxData = sgx_fopen_auto_key(zName, "wb+");
 			}
+
 
 			if (fileData->sgxData == 0x0) {
 				if (debugFlag) ocall_println_string("DataPointer not Set");
 
 			}
-
-/*
-
-            // SQLite allocated a buffer large enough to use it as a "File" object (see above)
-            auto fileData = static_cast<File*>(fileBase);
-            fileData->lockLevel = 0;
-
-            // if the name of the file doesn't contain a lexical_cast'ed pointer, then this is not our main DB file
-            //  (note: the flags can also be used to determine this)
-            if (zName == nullptr || strlen(zName) != sizeof(void*) * 2) {
-
-                assert(flags | SQLITE_OPEN_CREATE);
-                // if this is not our main DB file, we create a temporary stringstream that will be deleted when the file is closed
-                // this behavior is different than expected from a file system (where file are permanent)
-                //   but SQLite seems to accept it
-                new (&fileData->stream) std::shared_ptr<std::iostream>(std::make_shared<std::stringstream>(std::ios_base::in | std::ios_base::out | std::ios_base::binary));
-
-            } else {
-                // decoding our pointer, ie. un-lexical_cast'ing it
-                std::stringstream filenameStream(zName);
-                void* sharedPtrAddress = nullptr;
-                filenameStream >> sharedPtrAddress;
-                // our pointer points to a shared_ptr<std::iostream>, we make a copy of it
-                new (&fileData->stream) std::shared_ptr<std::iostream>(*static_cast<std::shared_ptr<std::iostream>*>(sharedPtrAddress));
-            }
-
-            assert(fileData->stream->good());
-
-            // I don't really know what to output as flags
-            // the "winOpen" implementation only sets either "readwrite" or "readonly"
-            if (pOutFlags != nullptr)
-                *pOutFlags = SQLITE_OPEN_READWRITE;
-
-            */
 
             return SQLITE_OK;
 		}
@@ -160,11 +123,12 @@ std::string getSgxVfsName() {
 			if (debugFlag) ocall_println_string("Close");
 			int32_t result = 0;
 			int32_t error = 0;
+
 			result = sgx_fclose(static_cast<File*>(fileBase)->sgxData);
 			error = sgx_ferror(static_cast<File*>(fileBase)->sgxData);
 
-//			if (result == 1)
-//				return SQLITE_IOERR_CLOSE;
+		if (result == 1)
+				return SQLITE_IOERR_CLOSE;
 			return SQLITE_OK;
 		}
 
@@ -186,9 +150,6 @@ std::string getSgxVfsName() {
 					static_cast<File*>(fileBase)->sgxData);
 			error = sgx_ferror(static_cast<File*>(fileBase)->sgxData);
 
-			if (resultRead == 0 && false) {
-				return SQLITE_IOERR_READ;
-			}
 
 			return SQLITE_OK;
 		}
@@ -199,10 +160,6 @@ std::string getSgxVfsName() {
 			int32_t resultWrite = 0;
 
 			auto fileData = static_cast<File*>(fileBase);
-
-			if(fileData->sgxData != 0x0) {
-				if (debugFlag) ocall_println_string("SgxData Pointer ok");
-			}
 
 			resultSeek = sgx_fseek(fileData->sgxData,
 					offset,
@@ -219,8 +176,6 @@ std::string getSgxVfsName() {
 				return SQLITE_IOERR_WRITE;
 			}
 
-			xSync(fileBase, 1);
-
 			return SQLITE_OK;
 		}
 
@@ -236,6 +191,7 @@ std::string getSgxVfsName() {
 			file_size = sgx_ftell(static_cast<File*>(fileBase)->sgxData);
 
 			*outputSize = file_size;
+
 			return SQLITE_OK;
 		}
 
@@ -310,17 +266,12 @@ std::string getSgxVfsName() {
 
 		static int xFullPathname(sqlite3_vfs*, const char *zName, int nOut,
 				char *zOut) {
-			// this function turns a relative path into an absolute path
-			// since our file names are just lexical_cast'ed pointers, we just strcpy
 			std::strncpy(zOut, zName, nOut);
 
 			return SQLITE_OK;
 		}
 
 		static int xCurrentTime(sqlite3_vfs*, double *output) {
-			// this function should return the number of days elapsed since
-			//   "noon in Greenwich on November 24, 4714 B.C according to the proleptic Gregorian calendar"
-			// I picked this constant from sqlite3.c which will make our life easier
 			static const double unixEpoch = 2440587.5;
 
 			if (debugFlag) ocall_println_string("xCurrentTimeInt64");
@@ -330,10 +281,6 @@ std::string getSgxVfsName() {
 		}
 
 		static int xCurrentTimeInt64(sqlite3_vfs*, sqlite3_int64 *output) {
-			// this function should return the number of milliseconds elapsed since
-			//   "noon in Greenwich on November 24, 4714 B.C according to the proleptic Gregorian calendar"
-			// I picked this constant from sqlite3.c which will make our life easier
-			// note: I wonder if it is not hundredth of seconds instead
 			static const sqlite3_int64 unixEpoch = 24405875
 					* sqlite3_int64(60 * 60 * 24 * 100);
 
@@ -359,7 +306,7 @@ std::string getSgxVfsName() {
 		}
 
 		static int xDelete(sqlite3_vfs*, const char *zName, int syncDir) {
-			ocall_println_string("xDelete");
+			//ocall_println_string("xDelete");
 			int32_t resultRemove = 0;
 			resultRemove = sgx_remove(zName);
 			if (resultRemove == 1) {

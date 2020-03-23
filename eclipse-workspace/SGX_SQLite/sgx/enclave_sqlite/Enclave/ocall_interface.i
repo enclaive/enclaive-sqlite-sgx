@@ -4195,8 +4195,6 @@ sgx_status_t u_sgxprotectedfs_do_file_recovery(int32_t* retval, const char* file
 
 
 
-void* a;
-
 long int sysconf(int name){
     char error_msg[256];
     snprintf(error_msg, sizeof(error_msg), "%s%s", "Error: no ocall implementation for ", __func__);
@@ -4205,67 +4203,65 @@ long int sysconf(int name){
 }
 
 int open64(const char *filename, int flags, ...){
-
- a = sgx_fopen_auto_key(filename, "w");
     mode_t mode = 0;
 
 
  if ((flags & 
-# 32 "Enclave/ocall_interface.c" 3 4
+# 28 "Enclave/ocall_interface.c" 3 4
              0100
-# 32 "Enclave/ocall_interface.c"
+# 28 "Enclave/ocall_interface.c"
                     ) || (flags & (
-# 32 "Enclave/ocall_interface.c" 3 4
+# 28 "Enclave/ocall_interface.c" 3 4
                                   (020000000 | 0200000) 
-# 32 "Enclave/ocall_interface.c"
+# 28 "Enclave/ocall_interface.c"
                                   | 
-# 32 "Enclave/ocall_interface.c" 3 4
+# 28 "Enclave/ocall_interface.c" 3 4
                                   0200000
-# 32 "Enclave/ocall_interface.c"
+# 28 "Enclave/ocall_interface.c"
                                   )) == (
-# 32 "Enclave/ocall_interface.c" 3 4
+# 28 "Enclave/ocall_interface.c" 3 4
                                                 (020000000 | 0200000) 
-# 32 "Enclave/ocall_interface.c"
+# 28 "Enclave/ocall_interface.c"
                                                 | 
-# 32 "Enclave/ocall_interface.c" 3 4
+# 28 "Enclave/ocall_interface.c" 3 4
                                                 0200000
-# 32 "Enclave/ocall_interface.c"
+# 28 "Enclave/ocall_interface.c"
                                                 )) {
   va_list valist;
   
-# 34 "Enclave/ocall_interface.c" 3 4
+# 30 "Enclave/ocall_interface.c" 3 4
  __builtin_va_start(
-# 34 "Enclave/ocall_interface.c"
+# 30 "Enclave/ocall_interface.c"
  valist
-# 34 "Enclave/ocall_interface.c" 3 4
+# 30 "Enclave/ocall_interface.c" 3 4
  ,
-# 34 "Enclave/ocall_interface.c"
+# 30 "Enclave/ocall_interface.c"
  flags
-# 34 "Enclave/ocall_interface.c" 3 4
+# 30 "Enclave/ocall_interface.c" 3 4
  )
-# 34 "Enclave/ocall_interface.c"
+# 30 "Enclave/ocall_interface.c"
                         ;
   mode = 
-# 35 "Enclave/ocall_interface.c" 3 4
+# 31 "Enclave/ocall_interface.c" 3 4
         __builtin_va_arg(
-# 35 "Enclave/ocall_interface.c"
+# 31 "Enclave/ocall_interface.c"
         valist
-# 35 "Enclave/ocall_interface.c" 3 4
+# 31 "Enclave/ocall_interface.c" 3 4
         ,
-# 35 "Enclave/ocall_interface.c"
+# 31 "Enclave/ocall_interface.c"
         mode_t
-# 35 "Enclave/ocall_interface.c" 3 4
+# 31 "Enclave/ocall_interface.c" 3 4
         )
-# 35 "Enclave/ocall_interface.c"
+# 31 "Enclave/ocall_interface.c"
                               ;
   
-# 36 "Enclave/ocall_interface.c" 3 4
+# 32 "Enclave/ocall_interface.c" 3 4
  __builtin_va_end(
-# 36 "Enclave/ocall_interface.c"
+# 32 "Enclave/ocall_interface.c"
  valist
-# 36 "Enclave/ocall_interface.c" 3 4
+# 32 "Enclave/ocall_interface.c" 3 4
  )
-# 36 "Enclave/ocall_interface.c"
+# 32 "Enclave/ocall_interface.c"
                ;
  }
 
@@ -4451,39 +4447,39 @@ int fcntl(int fd, int cmd, ... ){
 
     va_list valist;
  
-# 220 "Enclave/ocall_interface.c" 3 4
+# 216 "Enclave/ocall_interface.c" 3 4
 __builtin_va_start(
-# 220 "Enclave/ocall_interface.c"
+# 216 "Enclave/ocall_interface.c"
 valist
-# 220 "Enclave/ocall_interface.c" 3 4
+# 216 "Enclave/ocall_interface.c" 3 4
 ,
-# 220 "Enclave/ocall_interface.c"
+# 216 "Enclave/ocall_interface.c"
 cmd
-# 220 "Enclave/ocall_interface.c" 3 4
+# 216 "Enclave/ocall_interface.c" 3 4
 )
-# 220 "Enclave/ocall_interface.c"
+# 216 "Enclave/ocall_interface.c"
                      ;
  void* arg = 
-# 221 "Enclave/ocall_interface.c" 3 4
+# 217 "Enclave/ocall_interface.c" 3 4
             __builtin_va_arg(
-# 221 "Enclave/ocall_interface.c"
+# 217 "Enclave/ocall_interface.c"
             valist
-# 221 "Enclave/ocall_interface.c" 3 4
+# 217 "Enclave/ocall_interface.c" 3 4
             ,
-# 221 "Enclave/ocall_interface.c"
+# 217 "Enclave/ocall_interface.c"
             void*
-# 221 "Enclave/ocall_interface.c" 3 4
+# 217 "Enclave/ocall_interface.c" 3 4
             )
-# 221 "Enclave/ocall_interface.c"
+# 217 "Enclave/ocall_interface.c"
                                  ;
  
-# 222 "Enclave/ocall_interface.c" 3 4
+# 218 "Enclave/ocall_interface.c" 3 4
 __builtin_va_end(
-# 222 "Enclave/ocall_interface.c"
+# 218 "Enclave/ocall_interface.c"
 valist
-# 222 "Enclave/ocall_interface.c" 3 4
+# 218 "Enclave/ocall_interface.c" 3 4
 )
-# 222 "Enclave/ocall_interface.c"
+# 218 "Enclave/ocall_interface.c"
               ;
 
     int ret;
@@ -4570,9 +4566,9 @@ uid_t geteuid(void){
 
 char* getenv(const char *name){
     char* ret = 
-# 307 "Enclave/ocall_interface.c" 3 4
+# 303 "Enclave/ocall_interface.c" 3 4
                ((void *)0)
-# 307 "Enclave/ocall_interface.c"
+# 303 "Enclave/ocall_interface.c"
                    ;
     sgx_status_t status = ocall_getenv(&ret, name);
     if (status != SGX_SUCCESS) {
