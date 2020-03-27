@@ -60,7 +60,7 @@ int main(int argc, char *argv[]){
             break;
         }
         const char* sql = input.c_str();
-        for(int i = 0; i < 100000; i++){
+        for(int i = 0; i < 1; i++){
 			ret =  ecall_execute_sql(eid, sql);
 
 			if (ret != SGX_SUCCESS) {
