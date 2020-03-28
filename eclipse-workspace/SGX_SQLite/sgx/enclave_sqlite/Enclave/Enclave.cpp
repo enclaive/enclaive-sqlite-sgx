@@ -40,48 +40,6 @@ void ecall_opendb(const char *dbname) {
 	ocall_println_string(dbname);
 }
 
-SGX_FILE* ecall_fopen(const char *filename, const char *mode) {
-	SGX_FILE *a;
-	a = sgx_fopen_auto_key(filename, mode);
-	return a;
-}
-
-int32_t ecall_fclose(SGX_FILE *fp) {
-	int32_t a;
-	a = sgx_fclose(fp);
-	return a;
-}
-
-size_t ecall_fwrite(SGX_FILE *fp, char data[100]) {
-	size_t sizeofWrite;
-	size_t len = strlen(data);
-	sizeofWrite = sgx_fwrite(data, sizeof(char), len, fp);
-	return sizeofWrite;
-}
-
-uint64_t ecall_fsize(SGX_FILE *fp) {
-	uint64_t file_size = 0;
-	sgx_fseek(fp, 0, SEEK_END);
-	file_size = sgx_ftell(fp);
-	return file_size;
-}
-
-size_t ecall_fread(SGX_FILE *fp, char *readData, uint64_t size) {
-	char *data;
-	uint64_t startN = 1;
-	sgx_fseek(fp, 0, SEEK_END);
-	uint64_t finalN = sgx_ftell(fp);
-	sgx_fseek(fp, 0, SEEK_SET);
-	data = (char*) malloc(sizeof(char) * finalN);
-	memset(data, 0, sizeof(char) * finalN);
-
-	size_t sizeofRead = sgx_fread(data, startN, finalN, fp);
-	int len = strlen(data);
-	memcpy(readData, data, sizeofRead);
-	memset(readData + sizeofRead, '\0', 1);
-	return sizeofRead;
-}
-
 void ecall_execute_sql(const char *sql) {
 	int rc;
 	char *zErrMsg = 0;

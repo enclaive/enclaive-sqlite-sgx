@@ -207,7 +207,7 @@ std::string getSgxVfsName() {
 
 		static int xFullPathname(sqlite3_vfs*, const char *zName, int nOut,
 				char *zOut) {
-			std::strncpy(zOut, zName, nOut);
+			std::strncpy(zOut, zName, nOut); // @suppress("Function cannot be resolved")
 
 			return SQLITE_OK;
 		}
