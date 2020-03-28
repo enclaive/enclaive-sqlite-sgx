@@ -1,9 +1,3 @@
-/*
- * SgxVfsHandler.cpp
- *
- *  Created on: 04.03.2020
- *      Author: sgx
- */
 #include <string.h>
 #include <mutex>
 #include <assert.h>
@@ -72,48 +66,15 @@ std::string getSgxVfsName() {
 			methods.xDeviceCharacteristics = &xDeviceCharacteristics;
 			fileBase->pMethods = &methods;
 
-			/*
-			int tmpInt2 = SQLITE_OPEN_READWRITE;
-			int tmpInt4 = SQLITE_OPEN_CREATE;
-			int tmpInt256 = SQLITE_OPEN_MAIN_DB;
-			int tmpint2048 = SQLITE_OPEN_MAIN_JOURNAL;
-			int tmpInt4096 = SQLITE_OPEN_TEMP_JOURNAL;
-			int tmpInt52488 = SQLITE_OPEN_WAL;
-
-			int tmpInt258 = SQLITE_OPEN_READWRITE | SQLITE_OPEN_MAIN_DB;
-			int tmpInt2054 = SQLITE_OPEN_READWRITE | SQLITE_OPEN_MAIN_JOURNAL | SQLITE_OPEN_CREATE;
-			*/
-
 			if (debugFlag) ocall_println_string("Open");
 
 			auto fileData = static_cast<File*>(fileBase);
 			fileData->fileName = zName;
 
-			//SQLite set the Flag for the Main_DB
-			if (flags == (SQLITE_OPEN_READWRITE | SQLITE_OPEN_MAIN_DB )) {
-				if (debugFlag) ocall_println_string("MainDB");
-			}
-
-			//SQLite set the Flag for the Main_Journal
-			if (flags == (SQLITE_OPEN_READWRITE | SQLITE_OPEN_MAIN_JOURNAL | SQLITE_OPEN_CREATE)) {
-				if (debugFlag) ocall_println_string("JournalDB");
-			}
-
-			//SQLite set the Flag for the WAL_FILE
-			if (flags == (SQLITE_OPEN_READWRITE | SQLITE_OPEN_WAL | SQLITE_OPEN_CREATE)) {
-				if (debugFlag) ocall_println_string("WalDB");
-			}
-
 			fileData->sgxData = sgx_fopen_auto_key(zName, "rb+");
 
 			if (fileData->sgxData == NULL) {
 				fileData->sgxData = sgx_fopen_auto_key(zName, "wb+");
-			}
-
-
-			if (fileData->sgxData == 0x0) {
-				if (debugFlag) ocall_println_string("DataPointer not Set");
-
 			}
 
             return SQLITE_OK;
@@ -196,13 +157,13 @@ std::string getSgxVfsName() {
 		}
 
 		static int xLock(sqlite3_file *fileBase, int level) {
-			//ocall_println_string("LOCK");
+			if (debugFlag) ocall_println_string("LOCK");
 			static_cast<File*>(fileBase)->lockLevel = level;
 			return SQLITE_OK;
 		}
 
 		static int xUnlock(sqlite3_file *fileBase, int level) {
-			//ocall_println_string("UNLOCK");
+			if (debugFlag) ocall_println_string("UNLOCK");
 			static_cast<File*>(fileBase)->lockLevel = level;
 			return SQLITE_OK;
 		}
@@ -292,31 +253,20 @@ std::string getSgxVfsName() {
 
 		static int xRandomness(sqlite3_vfs*, int nByte, char *zOut) {
 			// this function generates a random serie of characters to write in 'zOut'
-			// we use C++0x's <random> features
-
-			static std::mt19937 randomGenerator;
-			/*static std::uniform_int<char> randomDistributor;
-
-			for (auto i = 0; i < nByte; ++i)
-				zOut[i] = randomDistributor(randomGenerator);
-			*/
-
+			// not implement
 			if (debugFlag) ocall_println_string("xRandomness");
 			return SQLITE_OK;
 		}
 
 		static int xDelete(sqlite3_vfs*, const char *zName, int syncDir) {
-			//ocall_println_string("xDelete");
+			if (debugFlag) ocall_println_string("xDelete");
 			int32_t resultRemove = 0;
 			resultRemove = sgx_remove(zName);
-			if (resultRemove == 1) {
-				//return SQLITE_IOERR_DELETE;
-			}
 			return SQLITE_OK;
 		}
 
 		static int xTruncate(sqlite3_file *fileBase, sqlite3_int64 size) {
-			ocall_println_string("xTruncate");
+			if (debugFlag)ocall_println_string("xTruncate");
 			// it is not possible to truncate a stream
 			// it makes sense to truncate a file or a buffer, but not a generic stream
 			// however it is possible to implement the xTruncate function as a no-op
@@ -325,14 +275,13 @@ std::string getSgxVfsName() {
 
 		static int xSleep(sqlite3_vfs*, int microseconds) {
 			if (debugFlag) ocall_println_string("xSleep");
-			//std::this_thread::sleep(std::chrono::microseconds(microseconds));
+			//not implement
 			return SQLITE_OK;
 		}
 
 	};
 
 	// creating the VFS structure
-	// TODO: some functions are not implemented due to lack of documentation ; I'll have to read sqlite3.c to find out
 	static sqlite3_vfs readStructure;
 	memset(&readStructure, 0, sizeof(readStructure));
 	readStructure.iVersion = 2;

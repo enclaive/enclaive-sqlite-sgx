@@ -95,5 +95,5 @@ void ecall_execute_sql(const char *sql) {
 
 void ecall_closedb() {
 	sqlite3_close_v2(db);
-	//ocall_println_string("Enclave: Closed database connection");
+	ocall_println_string("Enclave: Closed database connection");
 }
