@@ -15,38 +15,22 @@
 bool debugFlag = false;
 
 std::string getSgxVfsName() {
-	// a mutex protects the body of this function because we don't want to register the VFS twice
 	static std::mutex mutex;
 	std::lock_guard<std::mutex> lock(mutex);
 
-
-
-	// check if the VFS is already registered, in this case we directly return
 	static const char *vfsName = "sgx_vfs_handler";
 	if (sqlite3_vfs_find(vfsName) != nullptr)
 		return vfsName;
 
-	// this is the structure that will store all the custom informations about an opened file
-	// all the functions get in fact pointer to an sqlite3_file object
-	// we give SQLite the size of this structure and SQLite will allocate it for us
-	// 'xOpen' will have to call all the members' constructors (using placement-new), and 'xClose' will call all the destructors
 	struct File: sqlite3_file {
 		SGX_FILE *sgxData;         // pointer to the source stream
 		int lockLevel; 			   // level of lock by SQLite ; goes from 0 (not locked) to 4 (exclusive lock)
 		const char* fileName;
 	};
 
-	// making sure that the 'sqlite3_file' structure is at offset 0 in the 'File' structure
 	static_assert(offsetof(File, pMethods) == 0, "Wrong data alignment in custom SQLite3 VFS, lots of weird errors will happen during runtime");
-	// structure which contains static functions that we are going to pass to SQLite
-	// TODO: VC++2010 doesn't support lambda function treated as regular functions, or we would use this
-	struct Functions {
-		// opens a file by filling a sqlite3_file structure
-		// the name of the file should be the offset in memory where to find a "std::shared_ptr<std::iostream>"
-		// eg. you create a "std::shared_ptr<std::iostream>" whose memory location is 0x12345678
-		//      you have to pass "12345678" as the file name
-		// this function will make a copy of the shared_ptr and store it in the sqlite3_file
 
+	struct Functions {
 		static int xOpen(sqlite3_vfs*, const char *zName,
 				sqlite3_file *fileBase, int flags, int *pOutFlags) {
 
@@ -176,29 +160,25 @@ std::string getSgxVfsName() {
 
 		static int xFileControl(sqlite3_file *fileBase, int op, void *pArg) {
 
-			// this function is bit weird because it's supposed to handle generic operations
-			// the 'op' parameter is the operation code, and 'pArg' points to the arguments of the operation
-
 			auto fileData = static_cast<File*>(fileBase);
 
 			switch (op) {
 			case SQLITE_FCNTL_LOCKSTATE:
-				// outputs the current lock level of the file in reinterpret_cast<int*>(pArg)
 				*reinterpret_cast<int*>(pArg) = fileData->lockLevel;
 				break;
 
 			case SQLITE_FCNTL_SIZE_HINT:
 				// gives a hint about the size of the final file in reinterpret_cast<int*>(pArg)
+				// not implemented
 				if (debugFlag) ocall_println_string("xFileControl : SQLITE_FCNTL_SIZE_HINT");
 				break;
 
 			case SQLITE_FCNTL_CHUNK_SIZE:
 				// gives a hint about the size of blocks of data that SQLite will write at once
+				// not implemented
 				if (debugFlag) ocall_println_string("xFileControl : SQLITE_FCNTL_CHUNK_SIZE");
 				break;
 
-				// some operations are not documented (and not used in practice),
-				//   so I'll leave them alone
 			case SQLITE_GET_LOCKPROXYFILE:
 				return SQLITE_ERROR;
 			case SQLITE_SET_LOCKPROXYFILE:
@@ -253,7 +233,7 @@ std::string getSgxVfsName() {
 
 		static int xRandomness(sqlite3_vfs*, int nByte, char *zOut) {
 			// this function generates a random serie of characters to write in 'zOut'
-			// not implement
+			// not implemented
 			if (debugFlag) ocall_println_string("xRandomness");
 			return SQLITE_OK;
 		}
@@ -270,12 +250,13 @@ std::string getSgxVfsName() {
 			// it is not possible to truncate a stream
 			// it makes sense to truncate a file or a buffer, but not a generic stream
 			// however it is possible to implement the xTruncate function as a no-op
+			// not implemented
 			return SQLITE_OK;
 		}
 
 		static int xSleep(sqlite3_vfs*, int microseconds) {
 			if (debugFlag) ocall_println_string("xSleep");
-			//not implement
+			//not implemented
 			return SQLITE_OK;
 		}
 
