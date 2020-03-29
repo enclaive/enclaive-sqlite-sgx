@@ -3,4 +3,4 @@
 	url = https://github.com/yerzhan7/SGX_SQLite
 [submodule "3rd-party/sgx-perf"]
 	path = 3rd-party/sgx-perf
-	url = https://github.com/ibr-ds/sgx-perf.git
+	url = https://github.com/ibr-ds/sgx-perf
