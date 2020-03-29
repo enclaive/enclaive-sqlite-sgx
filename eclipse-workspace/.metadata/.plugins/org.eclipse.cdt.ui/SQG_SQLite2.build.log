@@ -1,0 +1,11 @@
+15:25:39 **** Clean-only build of configuration Intel(R) SGX Simulation Debug for project SQG_SQLite2 ****
+make SGX_DEBUG=1 SGX_MODE=SIM -f sgx/Makefile clean 
+make -C ./sgx/enclave_enclave_sqlite  -f sgx_u.mk clean;
+make[1]: Verzeichnis „/home/sgx/eclipse-workspace/SQG_SQLite2/sgx/enclave_enclave_sqlite“ wird betreten
+make[1]: Verzeichnis „/home/sgx/eclipse-workspace/SQG_SQLite2/sgx/enclave_enclave_sqlite“ wird verlassen
+make -C ./sgx/enclave_enclave_sqlite    -f sgx_t.mk clean;
+make[1]: Verzeichnis „/home/sgx/eclipse-workspace/SQG_SQLite2/sgx/enclave_enclave_sqlite“ wird betreten
+make[1]: Verzeichnis „/home/sgx/eclipse-workspace/SQG_SQLite2/sgx/enclave_enclave_sqlite“ wird verlassen
+
+15:25:39 Build Finished. 0 errors, 0 warnings. (took 67ms)
+
