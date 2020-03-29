@@ -1,3 +1,0 @@
-[submodule "3rd-party/SGX_SQLite"]
-	path = 3rd-party/SGX_SQLite
-	url = https://github.com/yerzhan7/SGX_SQLite
