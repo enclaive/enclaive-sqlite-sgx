@@ -1,9 +1,9 @@
-18:50:54 **** Incremental Build of configuration Intel(R) SGX Simulation Debug for project SGX_SQLite ****
-make SGX_DEBUG=1 SGX_MODE=SIM -f sgx/Makefile 
-make -C ./sgx/enclave_sqlite  -f sgx_t_u.mk all;
-make[1]: Entering directory '/home/sgx/M-AI-CryptographicProtocols/eclipse-workspace/SGX_SQLite/sgx/enclave_sqlite'
-The project has been built in debug simulation mode.
-make[1]: Leaving directory '/home/sgx/M-AI-CryptographicProtocols/eclipse-workspace/SGX_SQLite/sgx/enclave_sqlite'
+16:38:28 **** Clean-only build of configuration Intel(R) SGX Simulation Debug for project SGX_SQLite ****
+make SGX_DEBUG=1 SGX_MODE=SIM -f sgx/Makefile clean 
+make -C ./sgx/enclave_sqlite  -f sgx_t_u.mk clean;
+make[1]: Verzeichnis „/home/sgx/M-AI-CryptographicProtocols/eclipse-workspace/SGX_SQLite/sgx/enclave_sqlite“ wird betreten
+rm -f .config_* app enclave.so enclave.signed.so App/App.o App/ocalls.o App/Enclave_u.* Enclave/Enclave.o Enclave/SgxVfsHandler.o Enclave/sqlite3.o Enclave/ocall_interface.o Enclave/Enclave_t.* Enclave/sqlite3.i Enclave/ocall_interface.i
+make[1]: Verzeichnis „/home/sgx/M-AI-CryptographicProtocols/eclipse-workspace/SGX_SQLite/sgx/enclave_sqlite“ wird verlassen
 
-18:50:54 Build Finished. 0 errors, 0 warnings. (took 70ms)
+16:38:28 Build Finished. 0 errors, 0 warnings. (took 66ms)
 
