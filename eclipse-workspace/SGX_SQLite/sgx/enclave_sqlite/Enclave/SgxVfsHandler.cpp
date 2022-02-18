@@ -106,10 +106,19 @@ std::string getSgxVfsName() {
 
 			auto fileData = static_cast<File*>(fileBase);
 
-			resultSeek = sgx_fseek(fileData->sgxData,
-					offset,
-					SEEK_SET);
+			// Sometimes the byte offset (position of where to write the buffer) is larger than
+			// the complete file size, which causes sgx_fseek to fail (it searches somewhere behind the file).
+			// To fix this, dummy bytes are written to the end of the file to extend its 
+			// size so that sgx_fseek in any case finds the offset within the file
+			sgx_fseek(fileData->sgxData, 0, SEEK_END);
+			int64_t fileSize = sgx_ftell(fileData->sgxData);
+			if (offset > fileSize) {
+				int64_t diff = offset-fileSize;
+				char dummy[diff] = { 0 };
+				sgx_fwrite(dummy, sizeof(char), diff, fileData->sgxData);
+			}
 
+			resultSeek = sgx_fseek(fileData->sgxData, offset, SEEK_SET);
 			if (resultSeek == -1) {
 				return SQLITE_IOERR_SEEK;
 			}
